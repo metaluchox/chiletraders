@@ -19,6 +19,7 @@ export const NavBar = () => {
               <NavDropdown.Item as={Link} to="/dc" >DS</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/heroes" >Heroes</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/marvel" >Marvel</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/search" >Search</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav >
