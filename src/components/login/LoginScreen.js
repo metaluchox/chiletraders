@@ -1,25 +1,33 @@
 import React from 'react'
-import { Button } from 'react-bootstrap';
-
-export const LoginScreen = ({ history }) => {
-
-    const ingresar = ( )=> {
-        history.replace("/");
-    }
-    
-
+import { ContentCenter } from '../home/ContentCenter';
+import { ContentLeft } from '../home/ContentLeft';
+import { ContentRigth } from '../home/ContentRigth';
+import { Footer } from '../ui/Footer';
+import { NavBarPublic } from "../ui/NavBarPublic";
+export const LoginScreen = () => {
 
     return (
-        <div>
-             HOLA SOY LOGIN SCREEN
-                <br></br>
+        <>
+            <NavBarPublic />
+            <br />
+            <div className="row mb-3">
+                <div className="col-sm-3 themed-grid-col">
+                    <ContentLeft />
+                </div>
 
-             <Button variant="outline-primary"
-             onClick={ingresar}>
-                 Login
-            </Button>{' '}
+                <div className="col-sm-6 themed-grid-col">
+                    <ContentCenter />
+                </div>
 
+                <div className="col-sm-3 themed-grid-col">
 
-        </div>
+                    <ContentRigth />
+
+                </div>
+            </div>
+            <br />
+            <Footer />
+
+        </>
     )
 }

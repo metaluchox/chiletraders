@@ -22,7 +22,6 @@ export const SearchScreen = ( {history} ) => {
         e.preventDefault();
         history.push(`?q=${searchText}`)
 
-        console.log(searchText);
     }
 
     return (

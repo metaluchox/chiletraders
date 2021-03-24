@@ -1,0 +1,12 @@
+@import './base/settings';
+@import './base/base';
+
+// Componentes
+@import './components/auth';
+@import './components/button';
+@import './components/link';
+
+// pages
+@import './pages/register';
+@import './pages/navBar';
+@import './pages/footer';

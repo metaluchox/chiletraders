@@ -1,23 +1,24 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import { ContentCenter } from '../home/ContentCenter';
+import { ContentLeft } from '../home/ContentLeft';
+import { ContentRigth } from '../home/ContentRigth';
 
 export const HomeScreen = () => {
     return (
-        <>
-        <Container>
-        <Row>
-            <Col sm>
+        <div className="row mb-3">
+        <div className="col-sm-3 themed-grid-col">
+            <ContentLeft />
+        </div>
 
-                HomeScreen
-            </Col>
-            <Col sm>
-                HomeScreen
-            </Col>
-            <Col sm>
-                    HomeScreen
-            </Col>
-        </Row>
-        </Container>
-        </>
+        <div className="col-sm-6 themed-grid-col">
+            <ContentCenter />
+        </div>
+
+        <div className="col-sm-3 themed-grid-col">
+            
+            <ContentRigth />
+
+        </div>
+    </div>
     )
 }

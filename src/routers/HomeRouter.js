@@ -12,17 +12,16 @@ export const HomeRouter = () => {
     return (
         <>
         <NavBar />
-            <div className="album py-3 bg-light">
+        <br />
                     <Switch>
                         <Route exact path="/home" component={HomeScreen} />
-
                         <Route exact path="/marvel" component={MavelScreen} />
                         <Route exact path="/heroes/:heroeId" component={HeroScreen} />
                         <Route exact path="/dc" component={DsScreen} />
                         <Route exact path="/search" component={SearchScreen} />
                         <Redirect to="/home" />
                     </Switch>  
-            </div>
+        <br />        
         <Footer />
         </>
     )

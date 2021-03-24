@@ -1,13 +1,31 @@
-import React from 'react'
-import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 
 export const NavBar = () => {
+
+  const { user:{name}, dispatch } = useContext(AuthContext)
+  const history = useHistory();
+
+  const salirApp = () =>{
+    dispatch({
+      type: types.logout
+  })
+
+    history.push("/login");
+  }
+
+  
   return (
-    <>
-      <Navbar bg="primary" variant="dark" expand="lg">
+       <div className="col-lg-12">
+      <Navbar className="navbar-custom_ct" variant="dark" expand="lg">
         <Navbar.Brand as={Link} to="/">
-          <h2>CHILETRADERS.CL  <i className="bi bi-shuffle"></i></h2>
+
+         <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
+          width="270px"
+          alt="Chile Traders" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -22,15 +40,14 @@ export const NavBar = () => {
               <NavDropdown.Item as={Link} to="/search" >Search</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav >
-            <Button className="justify-content-end" variant="outline-light" as={Link} to="/login" block >Login</Button>
-          </Nav>
         </Navbar.Collapse>
+        <Nav>          
+          <Nav.Link href="#deets">Bienvenido {name}</Nav.Link>
+          <Nav.Link  onClick={salirApp} ><i className="bi bi-power"> Salir</i> </Nav.Link>
 
+        </Nav>
       </Navbar>
-
-    </>
-
+      </div>
   )
 }
 
