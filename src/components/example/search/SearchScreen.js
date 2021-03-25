@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import queryString from 'query-string';
 import { useLocation } from 'react-router';
-import { useForm } from '../../hooks/useForm';
+import { useForm } from '../../../hooks/useForm';
 import { HeroCard } from '../heroes/HeroCard';
 import { getHeroByName } from './getHeroByName';
 

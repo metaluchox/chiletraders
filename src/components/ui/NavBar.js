@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
+import React/*, { useContext } */from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { AuthContext } from '../../auth/AuthContext';
-import { types } from '../../types/types';
+import { startLogout } from '../../actions/auth';
 
 export const NavBar = () => {
 
-  const { user:{name}, dispatch } = useContext(AuthContext)
   const history = useHistory();
 
+  const dispatch =useDispatch();
+
   const salirApp = () =>{
-    dispatch({
-      type: types.logout
-  })
+
+    dispatch( startLogout() );
 
     history.push("/login");
   }
@@ -33,20 +33,13 @@ export const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="MENU" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.3">Reglas</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/dc" >DS</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/heroes" >Heroes</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/marvel" >Marvel</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/search" >Search</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/perfil"><i className="bi bi-person-check"></i> Perfil</NavDropdown.Item>
+              <NavDropdown.Item  onClick={salirApp}><i className="bi bi-power"> Salir</i> </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <Nav>          
-          <Nav.Link href="#deets">Bienvenido {name}</Nav.Link>
-          <Nav.Link  onClick={salirApp} ><i className="bi bi-power"> Salir</i> </Nav.Link>
-
-        </Nav>
       </Navbar>
       </div>
   )

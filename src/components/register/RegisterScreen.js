@@ -1,7 +1,64 @@
 import React from 'react'
+import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom'
+import isEmail from 'validator/lib/isEmail';
+import { removeError, setError } from '../../actions/ui';
+import { useForm } from '../../hooks/useForm';
+import { startRegisterEmailPassword } from '../../actions/auth';
 
 export const RegisterScreen = () => {
+
+    const dispatch = useDispatch();
+    const { msgError} = useSelector( state => state.ui );
+  
+    const [ formValues, handleInputChange ] = useForm({
+        
+        nombre: 'luis',
+        email:'luis@asd.cl',
+        password: '0303456',
+        repassword: '0303456'
+    })
+
+
+    const { nombre, email, password, repassword } = formValues;
+
+
+    const registrar = (e) => {
+        e.preventDefault();
+
+        if(isFormValid()){
+            dispatch(startRegisterEmailPassword(email, password, nombre))
+        };
+
+            
+
+        // const lastPath = localStorage.getItem('lastPath') || '/';
+        // dispatch( startLoginEmailPassword ( email, password ) );
+
+        // history.replace(lastPath);
+
+    }
+
+
+    const isFormValid = () =>{
+
+        if(nombre.trim().length===0){
+            dispatch(setError("el nombre es vacio"));
+            return false;
+        } else if (!isEmail(email) ){
+            dispatch(setError("el email es incorrecto"));
+            return false;
+        }else if(password !== repassword || password.length < 5){
+            dispatch(setError("El password es incorrecto o es menor a 5"));
+
+                return false;
+        }
+
+        dispatch(removeError())
+
+        return true;
+        
+    }
 
     return (
                 <div className="container">
@@ -23,25 +80,113 @@ export const RegisterScreen = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-8 py-5 border">
+
+
+
+{/* 
+
+ INIT PARTE FORMULARIO REGISTRRO
+
+*/}
+
+
+
+
+
+                        <div className="col-md-8 py-5 border">                            
                             <h4 className="pb-4">Please fill with your details</h4>
-                            <form>
+
+                    {msgError &&
+                        (
+                            <div className="alert alert-danger text-center" role="alert">
+                                {msgError}
+                            </div>
+                        )
+
+                    }
+
+                            
+
+
+                            <form onSubmit={ registrar } method="post">
                                 <div className="form-row">
-                                    <div className="form-group col-md-6">
-                                        <input id="Full Name" name="Full Name" placeholder="Full Name"
-                                            className="form-control" type="text" />
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                        <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
-                                    </div>
+
+<div className="container">
+  <div className="row">
+    <div className="col-md-6">
+        <input id="nombre" 
+        name="nombre" 
+        placeholder="Nombre Completo" 
+        className="form-control" 
+        type="text" 
+        value={nombre}
+        onChange={ handleInputChange } 
+        />
+        <br/>
+    </div>
+    <div className="col-md-6">
+        <input type="email" className="form-control" id="email" 
+        name="email"  placeholder="Email" 
+        value={email}
+        onChange={ handleInputChange } 
+        />
+        <br/>
+    </div>
+   
+    <div className="col-md-6">
+        <input type="password" className="form-control" id="password"
+         name="password" placeholder="Ingrese password" 
+         value={password}
+         onChange={ handleInputChange }
+         />
+        <br/>
+    </div>
+    <div className="col-md-6">
+        <input type="password" className="form-control" id="repassword" 
+        name="repassword" 
+        placeholder="Ingrese nuevamente el password"
+        value={repassword}
+        onChange={ handleInputChange }
+        />
+        <br/>
+    </div>  
+    <div className="col-md-12">
+        <div className="d-grid gap-2">
+        <button type="button" className="btn btn-danger" onClick={registrar}>Registrarse</button>
+        </div>
+        <br/>
+    </div>      
+    <div className="col-md-12">
+        <div className="d-grid gap-2">
+            <Link to="/login" className="btn btn-link"> Volver </Link>  
+        </div>
+        <br/>
+    </div>             
+  </div>
+</div>
+
+
+
+
                                 </div>
                                 <div>
-                                    <button type="button" className="btn btn-danger">Registrarse</button>
+                                    
                                     <br />
-                                    <Link to="/login" className="btn btn-primary"> Volver </Link>                                
+                                                                  
                                 </div>
                             </form>
                         </div>
+
+
+{/* 
+
+ END PARTE FORMULARIO REGISTRRO
+
+*/}
+
+
+
+
                     </div>
                 </div>
     )
