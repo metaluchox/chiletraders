@@ -9,7 +9,7 @@ export const RegisterScreen = () => {
                         <div className="col-md-4 py-5 register-custom_ct text-white text-center ">
                             <div className=" ">
                                 <div className="card-body">
-                                    <img src="../../assets/image/chiletraderslogosinfondoStandar.png"
+                                    <img src="../../assets/image/chiletraderslogosinfondo.png"
                                     width="30%"
                                     id="logo"
                                     alt="Chile traders"

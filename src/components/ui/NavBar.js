@@ -25,7 +25,8 @@ export const NavBar = () => {
 
          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
           width="270px"
-          alt="Chile Traders" />
+          alt="Chile Traders" 
+            />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

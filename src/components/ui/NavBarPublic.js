@@ -12,21 +12,23 @@ export const NavBarPublic = () => {
 
          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
           width="270px"
-          alt="Chile Traders" />
+          alt="Chile Traders" 
+          />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="MENU" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.3"><i class="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/dc" ><i class="bi bi-mic-fill"></i> Crear Tema</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/dc" ><i className="bi bi-mic-fill"></i> Crear Tema</NavDropdown.Item>
               <NavDropdown.Divider />              
-              <NavDropdown.Item as={Link} to="/dc" ><i class="bi bi-person-circle"></i> Registrarse </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/dc" ><i class="bi bi-person-circle"></i> Iniciar session </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/register" ><i className="bi bi-person-circle"></i> Registrarse </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar session </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        
 
       </Navbar>
 

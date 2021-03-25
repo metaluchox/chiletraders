@@ -57,18 +57,25 @@ export const ContentLeft = () => {
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="2">
-        Articulos de opinión
+          Bill Gates dice que el bitcoin es malo para el planeta, y tiene razón
+
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="2">
-      <Card.Body>Hello! I'm another body</Card.Body>
+      <Card.Body>
+        
+          La criptomoneda "utiliza más electricidad por transacción que cualquier otro método conocido por la humanidad", afirma.
+          <a href="https://www.esquire.com/es/tecnologia/a35727049/bill-gates-bitcoin-energia-medio-ambiente/" > Ver mas ...</a>
+
+
+      </Card.Body>
     </Accordion.Collapse>
   </Card>
 
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="3">
-        Cronicas
+          Articulos de opinión
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="3">
@@ -78,7 +85,7 @@ export const ContentLeft = () => {
 
 </Accordion>   
 <br />
-<Button className="btn btn-danger" block> <i class="bi bi-mic-fill"></i> Crear Tema </Button>
+<Button className="btn btn-danger" block> <i className="bi bi-mic-fill"></i> Crear Tema </Button>
 
 
 

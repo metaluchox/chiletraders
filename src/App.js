@@ -1,5 +1,8 @@
-import React, { useEffect, useReducer } from 'react';
 import './App.css';
+import React, { useEffect, useReducer } from 'react';
+
+import { Provider } from "react-redux";
+
 import { AppRouter } from './routers/AppRouter';
 import { AuthContext } from './auth/AuthContext';
 import { authReducer } from './auth/authReducer';
