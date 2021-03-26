@@ -37,13 +37,14 @@ export const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <NavDropdown title="MENU" id="collasible-nav-dropdown">
-            <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>  
-            <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-mic-fill"></i> Crear tema</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/perfil"><i className="bi bi-person-check"></i> Perfil</NavDropdown.Item>
-              <NavDropdown.Item  onClick={salirApp}><i className="bi bi-power"> Salir</i> </NavDropdown.Item>
+            <Nav.Link as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</Nav.Link>
+            <NavDropdown title="Temas" id="collasible-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
             </NavDropdown>
+            <hr/>
+            <Nav.Link as={Link} to="/perfil"><i className="bi bi-person-check"></i> Perfil</Nav.Link>
+            <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
           </Nav>
         </Navbar.Collapse>
       </Navbar>

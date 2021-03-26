@@ -12,7 +12,7 @@ export const ContentLeft = ( request ) => {
   <Accordion defaultActiveKey="0">
   <Card>
     <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+      <Accordion.Toggle as={Button} variant="link" eventKey="0" className="link text-center">
           Flash de mercado.
       </Accordion.Toggle>
     </Card.Header>
@@ -36,7 +36,7 @@ export const ContentLeft = ( request ) => {
   </Card>
   <Card>
     <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="1">
+      <Accordion.Toggle as={Button} variant="link" eventKey="1" className="link text-center"> 
         Cronicas
       </Accordion.Toggle>
     </Card.Header>
@@ -56,7 +56,7 @@ export const ContentLeft = ( request ) => {
   </Card>
   <Card>
     <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="2">
+      <Accordion.Toggle as={Button} variant="link" eventKey="2" className="link text-center">
           Bill Gates dice que el bitcoin es malo para el planeta, y tiene razón
 
       </Accordion.Toggle>
@@ -74,7 +74,7 @@ export const ContentLeft = ( request ) => {
 
   <Card>
     <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="3">
+      <Accordion.Toggle as={Button} variant="link" eventKey="3" className="link text-center">
           Articulos de opinión
       </Accordion.Toggle>
     </Card.Header>

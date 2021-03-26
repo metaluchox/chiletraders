@@ -5,7 +5,15 @@ export const ReglasScreen = () => {
     return (
         <>
             <div className="container">
-
+                <div>
+                    <Link to="/" >
+                        <img id="logo" src="../../assets/image/chiletraderslogoStandar.png"
+                            width="100%"
+                            alt="Chile Traders"
+                        />
+                    </Link>
+                    <hr />
+                </div>
                 <div className="alert alert-success" role="alert">
                     <h4 className="alert-heading">Well done!</h4>
                     <p>Aww yeah, you successfully read this important alert message.

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const NavBarPublic = () => {
@@ -19,12 +19,10 @@ export const NavBarPublic = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <NavDropdown title="MENU" id="collasible-nav-dropdown">          
-              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>    
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/register" ><i className="bi bi-person-circle"></i> Registrarse </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar session </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</Nav.Link>
+            < hr />
+            <Nav.Link as={Link} to="/register" ><i className="bi bi-person-plus-fill"></i> Registrarse </Nav.Link>
+            <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar sesión </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         

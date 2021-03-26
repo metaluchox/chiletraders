@@ -43,11 +43,11 @@ export const LoginConnect = () => {
                 <div className="modal-content">
                     <form onSubmit={ ingresar } method="post">
                         <div className="modal-header">
-
+                            <Link to="/" >
                             <img className="register__image" id="logo" src="../../assets/image/chiletraderslogoStandar.png"
                                 width="270px"
                                 alt="Chile Traders" />
-
+                            </Link>
                         </div>
                         <div className="modal-body">
                             <div className="form-group">
@@ -75,21 +75,16 @@ export const LoginConnect = () => {
                             </div>
                         </div>
                         <div className="d-grid gap-2">
-                            <input type="button" className="btn btn-danger" 
+                            <input type="button" className="btn btn-primary" 
                             onClick={ingresar}
                             disabled={ loading }
-                            value="Login" />
+                            value="Iniciar sesión" />
 
-                            <div className="google-btn"
-                                onClick={ ingresarByGoogle } >
-                                <div className="google-icon-wrapper">
-                                    <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
-                                </div>
-                                <p className="btn-text">
-                                    <b>Sign in with google</b>
-                                </p>
-                            </div>
-                            <Link to="/register" className="text-center" > <i className="bi bi-person-circle"></i> No tiene cuenta </Link>
+                            <Link onClick={ ingresarByGoogle } className="btn btn-danger" to="">                                
+                                <i className="bi bi-google text-center"></i>  Ingresa con google
+                            </Link>
+      
+                            <Link to="/register" className="text-center link" > <i className="bi bi-person-circle"></i> No tiene cuenta </Link>
                         </div>
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState }/*, { useContext }*/ from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -7,7 +7,6 @@ import {
 
 import { firebase } from "../firebase/firebase-config";
 
-// import { AuthContext } from '../auth/AuthContext';
 import { LoginConnect } from '../components/login/LoginConnect';
 import { LoginScreen } from '../components/login/LoginScreen';
 import { RegisterScreen } from '../components/register/RegisterScreen';
@@ -50,7 +49,7 @@ export const AppRouter = () => {
       return(
         <>
 
-      <div className="text-light bg-primary text-center" role="alert">
+      <div className="loadingDivCt text-light text-center " role="alert">
         <h1 className="alert-heading">
                   Loading...
           </h1>
@@ -60,9 +59,10 @@ export const AppRouter = () => {
         <hr />
         <p className="mb-0">
 
-             <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
-          width="10%"
-          alt="Chile Traders" 
+             <img id="logo" 
+                  src="../../assets/image/chiletraderslogosinfondo.png"
+                  width="40%"
+                  alt="Chile Traders" 
             />
 
         </p>
