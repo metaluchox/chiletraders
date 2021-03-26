@@ -14,8 +14,8 @@ export const LoginConnect = () => {
 
 
     const [ formValues, handleInputChange ] = useForm({
-        email:'luis@asd.cl',
-        password: '0303456'
+        email:'',
+        password: ''
     })
 
     const { email, password } = formValues;

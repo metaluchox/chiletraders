@@ -1,7 +1,9 @@
 import React from 'react'
 import { LoginConnect } from '../login/LoginConnect'
 
-export const ContentRigth = () => {
+export const ContentRigth = ( request ) => {
+
+
   return (
     <>
       <div className="col">
@@ -18,7 +20,13 @@ export const ContentRigth = () => {
       </div>
 
       <div className="col">
-          <LoginConnect />
+
+      {
+        request.isLogged!==true && <LoginConnect /> 
+      }
+
+
+          
       </div>
       <div className="col">
         <div className="card mb-4 rounded-3 shadow-sm">

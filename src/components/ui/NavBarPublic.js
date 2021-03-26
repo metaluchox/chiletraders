@@ -19,8 +19,9 @@ export const NavBarPublic = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <NavDropdown title="MENU" id="collasible-nav-dropdown">
-              <NavDropdown.Divider />              
+            <NavDropdown title="MENU" id="collasible-nav-dropdown">          
+              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</NavDropdown.Item>    
+              <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/register" ><i className="bi bi-person-circle"></i> Registrarse </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar session </NavDropdown.Item>
             </NavDropdown>

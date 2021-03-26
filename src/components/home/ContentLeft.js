@@ -2,7 +2,7 @@ import React from 'react'
 import {Accordion, Card, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export const ContentLeft = () => {
+export const ContentLeft = ( request ) => {
     return (
         <>
         
@@ -85,7 +85,10 @@ export const ContentLeft = () => {
 
 </Accordion>   
 <br />
-<Button className="btn btn-danger" block> <i className="bi bi-mic-fill"></i> Crear Tema </Button>
+              {
+                request.isLogged===true &&  (     <Button className="btn btn-danger" block> <i className="bi bi-mic-fill"></i> Crear Tema </Button>    ) 
+              }
+
 
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState }/*, { useContext }*/ from 'react'
 import {
   BrowserRouter as Router,
+  Route,
   Switch
 } from "react-router-dom";
 
@@ -29,8 +30,8 @@ export const AppRouter = () => {
 
       firebase.auth().onAuthStateChanged( ( user ) => {
 
-
         if(user?.uid){
+
             dispatch(login(user.uid, user.displayName));
             setIsLoggedIn( true );
         }else{
@@ -47,13 +48,34 @@ export const AppRouter = () => {
   if(cheking){
 
       return(
+        <>
 
-          <h1>Espere </h1>        
+      <div className="text-light bg-primary text-center" role="alert">
+        <h1 className="alert-heading">
+                  Loading...
+          </h1>
+          <div className="spinner-grow text-light" role="status">
+          <h1><span className="sr-only"></span></h1>
+        </div>
+        <hr />
+        <p className="mb-0">
+
+             <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
+          width="10%"
+          alt="Chile Traders" 
+            />
+
+        </p>
+      </div>
+
+</>
       )
 
   }
 
-// const { user } = useContext(AuthContext);
+
+  
+
 
     return (
       <Router>
@@ -74,10 +96,9 @@ export const AppRouter = () => {
             component={RegisterScreen}
             isAuthenticated={isLoggedIn} />
 
-          <PrivateRoute 
+            <Route 
             exact path="/ruler" 
-            component={ReglasScreen}
-            isAuthenticated={isLoggedIn} />
+            component={ReglasScreen} />
 
             <PrivateRoute 
               path="/"
