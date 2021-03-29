@@ -9,7 +9,7 @@ export const ContentLeft = ( request ) => {
       <p className="text-center"><strong>ARTÍCULOS DE OPINIÓN</strong></p>
 
 
-  <Accordion defaultActiveKey="0">
+  <Accordion >
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0" className="link text-center">

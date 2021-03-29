@@ -5,10 +5,17 @@ import { Redirect, Route, Switch } from 'react-router'
 // import { MavelScreen } from '../components/example/marvel/MavelScreen'
 // import { SearchScreen } from '../components/example/search/SearchScreen'
 import { HomeScreen } from '../components/home/HomeScreen'
+import { ListarTemaScreen } from '../components/temas/ListarTemaScreen'
+import { CrearTemaScreen } from '../components/temas/CrearTemaScreen'
+import { MiPerfilScreen } from '../components/perfil/MiPerfilScreen'
+
 import { Footer } from '../components/ui/Footer'
 import { NavBar } from '../components/ui/NavBar'
 
 export const HomeRouter = () => {
+
+    
+
     return (
         <>
         <NavBar />
@@ -19,6 +26,11 @@ export const HomeRouter = () => {
                         <Route exact path="/heroes/:heroeId" component={HeroScreen} />
                         <Route exact path="/dc" component={DsScreen} />
                         <Route exact path="/search" component={SearchScreen} /> */}
+
+
+                        <Route exact path="/listarTema" component={ListarTemaScreen} />
+                        <Route exact path="/crearTema" component={CrearTemaScreen} />
+                        <Route exact path="/miPerfil" component={MiPerfilScreen} />
                         <Redirect to="/home" />
                     </Switch>  
         <br />        

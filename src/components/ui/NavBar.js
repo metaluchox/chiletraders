@@ -39,11 +39,11 @@ export const NavBar = () => {
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</Nav.Link>
             <NavDropdown title="Temas" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/ruler" ><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/listarTema" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
             </NavDropdown>
             <hr/>
-            <Nav.Link as={Link} to="/perfil"><i className="bi bi-person-check"></i> Perfil</Nav.Link>
+            <Nav.Link as={Link} to="/miPerfil"><i className="bi bi-person-check"></i> Perfil</Nav.Link>
             <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
           </Nav>
         </Navbar.Collapse>
