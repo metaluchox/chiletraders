@@ -79,9 +79,8 @@ export const LoginConnect = () => {
                             onClick={ingresar}
                             disabled={ loading }
                             value="Iniciar sesión" />
-
                             <Link onClick={ ingresarByGoogle } className="btn btn-danger" to="">                                
-                                <i className="bi bi-google text-center"></i>  Ingresa con google
+                                <i className="bi bi-google text-center"></i>  Ingresa con <b>Google</b>
                             </Link>
       
                             <Link to="/register" className="text-center link" > <i className="bi bi-person-circle"></i> No tiene cuenta </Link>

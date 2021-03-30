@@ -1,16 +1,73 @@
 import React from 'react'
 import {Accordion, Card, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { startLogout } from '../../actions/auth';
+import { useSelector } from 'react-redux';
 
-export const ContentLeft = ( request ) => {
+
+import Swal from 'sweetalert2';
+
+export const ContentLeft = ( { request } ) => {
+
+  
+  const {uid, isLogged}  = useSelector( state => state.auth );
+
+
+
+  const history = useHistory();
+  const dispatch =useDispatch();
+
+  const salirApp = () =>{
+
+    Swal.fire({
+      title: 'Estas seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+          dispatch( startLogout() );
+          history.push("/login");
+      }
+    })
+
+  }
+
     return (
         <>
         
+        {
+        
+          (isLogged===true) &&  (    
+
+            <div>
+              <div className="d-grid gap-2">
+                <Link className="btn btn-outline-secondary"  as={Link} to={`/miPerfil/${uid}`}><i className="bi bi-person-circle"> Perfil </i></Link>
+              </div>  
+              <br/>
+              <div className="d-grid gap-2">
+                <Link className="btn btn-outline-secondary"  as={Link} to="/crearTema" ><i className="bi bi-bookmark-star"> Crear Tema </i></Link>
+              </div>  
+              <br/>
+            <div className="d-grid gap-2">
+              <Link className="btn btn-outline-danger" onClick={salirApp} to="" ><i className="bi bi-power"> Cerrar sesión</i></Link>
+            </div>            
+            <br/>
+            </div>
+            
+          ) 
+        }
+
+
       <p className="text-center"><strong>ARTÍCULOS DE OPINIÓN</strong></p>
 
 
   <Accordion >
-  <Card>
+  <Card >
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0" className="link text-center">
           Flash de mercado.
@@ -25,10 +82,7 @@ export const ContentLeft = ( request ) => {
       daily and weekly analysis keep you abreast on the latest developments in the shares 
       that you are interested in trading.
     All of this and more at NBRB-regulated Fortrade.
-    <img 
-    alt="example" 
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAynLzdLt4BOxJ8sFS0wqpKY-kuC_FhhNNiA&usqp=CAU"
-    width="100%" />
+
     <Link to="/hola">Ver Mas... </Link>
 
       </Card.Body>
@@ -36,7 +90,7 @@ export const ContentLeft = ( request ) => {
   </Card>
   <Card>
     <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="1" className="link text-center"> 
+      <Accordion.Toggle as={Button} variant="link" eventKey="1" className="link text-center "> 
         Cronicas
       </Accordion.Toggle>
     </Card.Header>
@@ -84,14 +138,6 @@ export const ContentLeft = ( request ) => {
   </Card>
 
 </Accordion>   
-<br />
-              {
-                request.isLogged===true &&  (     <Button className="btn btn-danger" block> <i className="bi bi-mic-fill"></i> Crear Tema </Button>    ) 
-              }
-
-
-
-
         </>
     )
 }

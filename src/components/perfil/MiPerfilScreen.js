@@ -1,11 +1,53 @@
-import React from 'react'
 import './MiPerfilScreen.css';
 
+import React from 'react'
+import { Link, useParams } from 'react-router-dom';
+import { NothingMessageScreen } from '../nothing/NothingMessageScreen';
+import { loadUser } from '../../helpers/loadUser';
+import { useForm } from '../../hooks/useForm';
+
 export const MiPerfilScreen = () => {
+
+	const { id } = useParams();
+	const active= true;
+	
+	// const dispatch = useDispatch();
+
+	// const response = loadUser(id).then(
+	// 	val => console.log(val[0].phto)
+	// );
+
+
+// 	const [ formValues, handleInputChange ] = useForm({
+        
+// 		nombre: '',
+// 		email:'',
+// 		password: '',
+// 		repassword: ''
+//    })
+
+
+//    const { nombre, email, password, repassword } = formValues;
+
+
+	// const asd = async ()=> {
+	// 	return await loadUser(id);
+	// }
+	
+	//dispatch( setUser(usuario) );
+	
+
+	
     return (
         <>
 
-<div className="container">
+		{
+			( !active )
+			? 
+				<NothingMessageScreen />
+			:
+
+			<div className="container">
 <div className="row gutters">
 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 <div className="card h-100">
@@ -63,7 +105,7 @@ export const MiPerfilScreen = () => {
 			<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div className="d-grid gap-2">
                     <button type="button" id="submit" name="submit" className="btn btn-primary">Actualizar</button>
-					<button type="button" id="submit" name="submit" className="btn btn-secondary">Cancel</button>
+					<Link type="button" className="btn btn-secondary" to={`/home`}>Cancel</Link>
 				</div>
 			</div>
 		</div>
@@ -71,7 +113,11 @@ export const MiPerfilScreen = () => {
 </div>
 </div>
 </div>
-</div>        
+</div>     
+
+		}
+
+   
                
         </>
     )

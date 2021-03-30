@@ -30,7 +30,7 @@ export const HomeRouter = () => {
 
                         <Route exact path="/listarTema" component={ListarTemaScreen} />
                         <Route exact path="/crearTema" component={CrearTemaScreen} />
-                        <Route exact path="/miPerfil" component={MiPerfilScreen} />
+                        <Route exact path="/miPerfil/:id" component={MiPerfilScreen} />
                         <Redirect to="/home" />
                     </Switch>  
         <br />        

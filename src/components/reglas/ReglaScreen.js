@@ -14,7 +14,10 @@ export const ReglasScreen = () => {
                     </Link>
                     <hr />
                 </div>
-
+                <div className="d-grid gap-2">
+                    <Link className="btn btn-outline-secondary" to="/" >Volver</Link>
+                </div>
+                <br/>
                 <div className="alert alert-warning" role="alert">
                     <h4 className="alert-heading">Reglas de los foros</h4>
                     <p>
@@ -55,7 +58,7 @@ export const ReglasScreen = () => {
                 <br />
 
                 <div className="d-grid gap-2">
-                    <Link className="btn btn-outline-primary" to="/" >Volver</Link>
+                    <Link className="btn btn-outline-secondary" to="/" >Volver</Link>
                 </div>
             </div>
 

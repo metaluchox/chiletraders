@@ -1,32 +1,18 @@
-import React from 'react'
-import { LoginConnect } from '../login/LoginConnect'
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { startLogout } from '../../actions/auth';
+import React from 'react';
+import { LoginConnect } from '../login/LoginConnect';
+import { useSelector } from 'react-redux';
+
 
 export const ContentRigth = ( request ) => {
   
-  const history = useHistory();
-  const dispatch =useDispatch();
 
-  const salirApp = () =>{
-
-    dispatch( startLogout() );
-
-    history.push("/login");
-  }
-
-
+  const { isLogged }  = useSelector( state => state.auth );
 
   return (
     <>
       <div className="col">
       {
-        ( request.isLogged!==true &&  <LoginConnect /> ) || 
-        <div className="d-grid gap-2">
-          <button className="btn btn-danger" type="button" onClick={salirApp} ><i className="bi bi-power"> Cerrar sesión</i></button>
-          <br/>
-        </div>
+        ( isLogged!==true &&  <LoginConnect /> ) 
         
       }
       </div>

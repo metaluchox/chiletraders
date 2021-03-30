@@ -7,7 +7,7 @@ export const NavBarPublic = () => {
   return (
     <div className="col-lg-12">
     
-      <Navbar className="navbar-custom_ct" variant="dark" expand="lg">
+      <Navbar className="navbar-custom_ct fixed-top" variant="dark" expand="lg">
         <Navbar.Brand as={Link} to="/">
 
          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"

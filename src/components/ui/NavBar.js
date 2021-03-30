@@ -1,10 +1,14 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
+import Swal from 'sweetalert2';
+
 
 export const NavBar = () => {
+
+  const {uid}  = useSelector( state => state.auth );
 
   const history = useHistory();
 
@@ -12,9 +16,22 @@ export const NavBar = () => {
 
   const salirApp = () =>{
 
-    dispatch( startLogout() );
 
-    history.push("/login");
+    Swal.fire({
+      title: 'Estas seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch( startLogout() );
+        history.push("/login");
+      }
+    })
+
+
   }
 
 
@@ -25,7 +42,7 @@ export const NavBar = () => {
 
        <div className="col-lg-12">
          
-      <Navbar className="navbar-custom_ct" variant="dark" expand="lg">
+      <Navbar className="navbar-custom_ct fixed-top" variant="dark" expand="lg">
         <Navbar.Brand as={Link} to="/">
 
          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
@@ -43,7 +60,7 @@ export const NavBar = () => {
               <NavDropdown.Item as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
             </NavDropdown>
             <hr/>
-            <Nav.Link as={Link} to="/miPerfil"><i className="bi bi-person-check"></i> Perfil</Nav.Link>
+            <Nav.Link as={Link} to={`/miPerfil/${uid}`}><i className="bi bi-person-check"></i> Perfil</Nav.Link>
             <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
           </Nav>
         </Navbar.Collapse>
