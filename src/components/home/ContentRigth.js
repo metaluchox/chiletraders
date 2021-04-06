@@ -1,18 +1,13 @@
 import React from 'react';
 import { LoginConnect } from '../login/LoginConnect';
-import { useSelector } from 'react-redux';
-
 
 export const ContentRigth = ( request ) => {
   
-
-  const { isLogged }  = useSelector( state => state.auth );
-
   return (
     <>
       <div className="col">
       {
-        ( isLogged!==true &&  <LoginConnect /> ) 
+        ( request.isLogged!==true &&  <LoginConnect /> ) 
         
       }
       </div>
@@ -25,14 +20,12 @@ export const ContentRigth = ( request ) => {
 
       <div className="col">
         <div className="card mb-4 rounded-3 shadow-sm">
-            <img alt="Coca cola"
-              src="http://www.latinspots.com/files/galerias/CocaColaFrases_1_Grey_gal_g.jpg" width="100%" />
+            <script data-ad-client="ca-pub-9540553176969950" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           </div>          
         </div>
       <div className="col">
         <div className="card mb-4 rounded-3 shadow-sm">
-          <img alt="Coca cola"
-            src="https://www.grupoendor.com/wp-content/uploads/2018/01/tesla-un-estandarte-de-excelencia.jpg" width="100%" />
+            <script data-ad-client="ca-pub-9540553176969950" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </div>
       </div>
 

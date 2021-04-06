@@ -13,13 +13,25 @@ export const startLoginEmailPassword = (email, password) => {
                                 dispatch(login(user.uid, user.displayName))
                                 dispatch(finishLoading());
 
-                                Swal.fire({
+                                      const Toast = Swal.mixin({
+                                        toast: true,
                                         position: 'top-end',
-                                        icon: 'success',
-                                        title: 'Bienvenido '+user.displayName,
                                         showConfirmButton: false,
-                                        timer: 2000
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
                                       })
+                                      
+                                      Toast.fire({
+                                        icon: 'success',
+                                        title: 'Signed in successfully '+user.displayName
+                                      })
+
+
+
                                       
 
                         })
@@ -38,7 +50,7 @@ export const startGoogleLogin = () => {
                         .then( async ({ user }) => {
                                  
                                 // Create a reference to the cities collection
-                                const userRef = db.collection('usuarios');
+                                const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
                                 // Create a query against the collection
                                 
                                 const queryRef = await userRef.where('email', '==', user.email).get();
@@ -59,7 +71,7 @@ export const startGoogleLogin = () => {
                                                                                 
                                         }
 
-                                        db.collection('usuarios').add(usuario);                                        
+                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);                                        
 
 
                                 }                                  
@@ -68,12 +80,21 @@ export const startGoogleLogin = () => {
                                         login(user.uid, user.displayName)
                                 )
 
-                                Swal.fire({
+                                const Toast = Swal.mixin({
+                                        toast: true,
                                         position: 'top-end',
-                                        icon: 'success',
-                                        title: 'Bienvenido '+user.displayName,
                                         showConfirmButton: false,
-                                        timer: 2000
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      })
+                                      
+                                      Toast.fire({
+                                        icon: 'success',
+                                        title: 'Signed in successfully '+user.displayName
                                       })
                                                                       
                         })
@@ -93,7 +114,7 @@ export const startRegisterEmailPassword = (email, password, name) => {
 
 
                                 // Create a reference to the cities collection
-                                const userRef = db.collection('usuarios');
+                                const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
                                 // Create a query against the collection
 
                                 const queryRef = await userRef.where('email', '==', user.email).get();
@@ -114,7 +135,7 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                                                                 
                                         }
 
-                                        db.collection('usuarios').add(usuario);                                        
+                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);                                        
 
 
                                 }
@@ -153,6 +174,25 @@ export const startLogout = () => {
 
         return (dispatch) => {
                 firebase.auth().signOut();
+
+
+                const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Sign out '
+                      })
+
         }
 
 }

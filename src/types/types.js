@@ -8,10 +8,14 @@ export const types = {
     uiStartLoading:     '[UI] Start loading',
     uiFinishLoading:    '[UI] Finish loading',
 
-    userAddNew :        '[User] New user',
-    userActive :        '[User] Active user',
-    userUpdate :        '[User] Update user',
-    userLoad :        '[User] Load user',
+    temaAddNew :        '[Tema] New tema',
+    temaActive :        '[Tema] Set active tema',
+    temaLoad :          '[Tema] Load tema',
+    temaUpdated :       '[Tema] Updated tema saved',
+    temaFileUrl :       '[Tema] Updated image url',
+    temaDelete :        '[Tema] Delete tema',
+    temaLogoutCleaining:'[Tema] Logout Cleaning',
+
 
 
 }

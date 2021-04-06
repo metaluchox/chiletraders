@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
 import Swal from 'sweetalert2';
+import { starLoadingTemas } from '../../actions/temas';
 
 
 export const NavBar = () => {
@@ -15,7 +16,6 @@ export const NavBar = () => {
   const dispatch =useDispatch();
 
   const salirApp = () =>{
-
 
     Swal.fire({
       title: 'Estas seguro?',
@@ -31,10 +31,9 @@ export const NavBar = () => {
       }
     })
 
-
   }
 
-
+    dispatch( starLoadingTemas( uid ));
   
   return (
     <>
@@ -56,8 +55,8 @@ export const NavBar = () => {
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</Nav.Link>
             <NavDropdown title="Temas" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/listarTema" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/listarTema"><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
             </NavDropdown>
             <hr/>
             <Nav.Link as={Link} to={`/miPerfil/${uid}`}><i className="bi bi-person-check"></i> Perfil</Nav.Link>

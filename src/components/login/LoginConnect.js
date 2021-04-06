@@ -1,17 +1,14 @@
-import React /*, { useContext }*/ from 'react'
-import { Link /*, useHistory*/ } from 'react-router-dom';
+import React  from 'react'
+import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from "react-redux";
 import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
-// import { AuthContext } from '../../auth/AuthContext';
-// import { types } from '../../types/types';
+
 
 export const LoginConnect = () => {
 
-    // const history = useHistory();
     const dispatch = useDispatch();
     const { loading } = useSelector( state => state.ui );
-
 
     const [ formValues, handleInputChange ] = useForm({
         email:'',
@@ -20,16 +17,10 @@ export const LoginConnect = () => {
 
     const { email, password } = formValues;
 
-    // const { dispatch } = useContext(AuthContext);
-
-
     const ingresar = (e) => {
         e.preventDefault();
-        // const lastPath = localStorage.getItem('lastPath') || '/';
         dispatch( startLoginEmailPassword ( email, password ) );
-
         // history.replace(lastPath);
-
     }
 
     const ingresarByGoogle = () =>{

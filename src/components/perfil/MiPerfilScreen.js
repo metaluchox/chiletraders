@@ -8,34 +8,54 @@ import { useForm } from '../../hooks/useForm';
 
 export const MiPerfilScreen = () => {
 
-	const { id } = useParams();
+	const id = useParams();
+
 	const active= true;
 	
-	// const dispatch = useDispatch();
-
-	// const response = loadUser(id).then(
-	// 	val => console.log(val[0].phto)
-	// );
-
-
-// 	const [ formValues, handleInputChange ] = useForm({
+    const [ formValues, handleInputChange ] = useForm({
         
-// 		nombre: '',
-// 		email:'',
-// 		password: '',
-// 		repassword: ''
-//    })
+		fullName: "",
+		email: "",
+		password: '',
+		repassword: "",
+   })
+
+   const { fullName, email, password, repassword } = formValues;
 
 
-//    const { nombre, email, password, repassword } = formValues;
+	   loadUser(id).then(
+		   function(value) {
+			   loaded(value)
+			  // console.log(value);
+			  
+		}
+	   );
 
 
-	// const asd = async ()=> {
-	// 	return await loadUser(id);
-	// }
+
+   function loaded(some) {
+
+		document.getElementById("h5-user-name").innerHTML = some[0].nombre;
+		document.getElementById("h6-email").innerHTML = some[0].email;
+		document.getElementById("p-about").innerHTML = some[0].about;
+		
+	  	document.getElementById("fullName").value = some[0].nombre;
+	  	document.getElementById("email").value = some[0].email;
+
+		  if(some[0].photoUrl!==null){
+			document.getElementById("myImg").src = some[0].photoUrl;
+	  	}
+	  
+
+
+
+   }
 	
-	//dispatch( setUser(usuario) );
-	
+
+
+
+
+
 
 	
     return (
@@ -55,14 +75,14 @@ export const MiPerfilScreen = () => {
 		<div className="account-settings">
 			<div className="user-profile">
 				<div className="user-avatar">
-					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" />
+					<img id="myImg" src="../assets/image/avatar7.png" alt="Usuario" />
 				</div>
-				<h5 className="user-name">Yuki Hayashi</h5>
-				<h6 className="user-email">yuki@Maxwell.com</h6>
+				<h5 id="h5-user-name" className="user-name">Usuario</h5>
+				<h6 id="h6-email" className="user-email">Email</h6>
 			</div>
 			<div className="about">
-				<h5>About</h5>
-				<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+				<h5>Acerca de </h5>
+				<p id="p-about"></p>
 			</div>
 		</div>
 	</div>
@@ -70,6 +90,12 @@ export const MiPerfilScreen = () => {
 </div>
 <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 <div className="card h-100">
+
+
+
+
+
+
 	<div className="card-body">
 		<div className="row gutters">
 			<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -78,25 +104,49 @@ export const MiPerfilScreen = () => {
 			<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div className="form-group">
 					<label htmlFor="fullName">Nombre completo</label>
-					<input type="text" className="form-control" id="fullName" placeholder="Enter full name" />
+					<input type="text" 
+							className="form-control" 
+							id="fullName"							  
+							 placeholder="Enter full name"
+							 name="fullName"
+							 value={fullName}
+							 onChange={ handleInputChange } />
 				</div>
 			</div>
 			<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div className="form-group">
 					<label htmlFor="eMail">Email</label>
-					<input type="email" className="form-control" id="eMail" placeholder="Enter email ID" />
+					<input type="email" 
+							className="form-control" 
+							id="email" 
+							placeholder="Enter email ID" 
+							name="email"
+							value={email}
+							onChange={ handleInputChange }/>
 				</div>
 			</div>
 			<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div className="form-group">
 					<label htmlFor="password">Password</label>
-					<input type="password" className="form-control" id="password" placeholder="Enter password" />
+					<input type="password" 
+							className="form-control" 
+							id="password" 
+							placeholder="Enter password"
+							name="password"
+							value={password}
+							onChange={ handleInputChange } />
 				</div>
 			</div>
 			<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div className="form-group">
-					<label htmlFor="password">Password</label>
-					<input type="password" className="form-control" id="password" placeholder="Enter re-password" />
+					<label htmlFor="password">Repite Password</label>
+					<input type="password" 
+							className="form-control" 
+							id="repassword" 
+							placeholder="Enter re-password"
+							name="repassword"
+							value={repassword}
+							onChange={ handleInputChange } />
 				</div>
 			</div>
 		</div>
@@ -104,8 +154,8 @@ export const MiPerfilScreen = () => {
 		<div className="row gutters">
 			<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div className="d-grid gap-2">
-                    <button type="button" id="submit" name="submit" className="btn btn-primary">Actualizar</button>
-					<Link type="button" className="btn btn-secondary" to={`/home`}>Cancel</Link>
+                    <button type="button" id="submit" name="submit" className="btn btn-outline-danger">Actualizar</button>
+					<Link type="button" className="btn btn-outline-secondary" to={`/home`}>Cancel</Link>
 				</div>
 			</div>
 		</div>

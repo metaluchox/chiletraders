@@ -9,12 +9,10 @@ import { useSelector } from 'react-redux';
 
 import Swal from 'sweetalert2';
 
-export const ContentLeft = ( { request } ) => {
+export const ContentLeft = ( request ) => {
 
   
-  const {uid, isLogged}  = useSelector( state => state.auth );
-
-
+  const {uid}  = useSelector( state => state.auth );
 
   const history = useHistory();
   const dispatch =useDispatch();
@@ -42,7 +40,7 @@ export const ContentLeft = ( { request } ) => {
         
         {
         
-          (isLogged===true) &&  (    
+          (request.isLogged===true) &&  (    
 
             <div>
               <div className="d-grid gap-2">

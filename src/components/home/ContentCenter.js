@@ -1,103 +1,73 @@
 import React from 'react'
+import './ContentCenter.css'
 
 export const ContentCenter = () => {
     return (
         <>
-        <div className="table-responsive">
-            <table className="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th className="text-center">Temas de Discusión</th>
-                        <th className="text-center">Mensaje</th>
-                        <th className="text-center">Últimos Mensajes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><i className="bi bi-star-fill"></i> 1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td><i className="bi bi-star"></i> 1,003</td>
-                        <td>data</td>
-                        <td>rich</td>
-                    </tr>
-                    <tr>
-                        <td> <i className="bi bi-star-fill"></i>1,003</td>
-                        <td>information</td>
-                        <td>placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>text</td>
-                        <td>random</td>
-                    </tr>
-                    <tr>
-                        <td> <i className="bi bi-star"></i>1,005</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                    </tr>
-                    <tr>
-                        <td> <i className="bi bi-star-half"></i>1,007</td>
-                        <td>placeholder</td>
-                        <td>tabular</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>random</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td><i className="bi bi-star-fill"></i> 1,009</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>data</td>
-                        <td>rich</td>
-                    </tr>
-                    <tr>
-                        <td> <i className="bi bi-star-half"></i>1,011</td>
-                        <td>information</td>
-                        <td>placeholder</td>
+		
 
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>text</td>
-                        <td>placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>random</td>
-                        <td>tabular</td>
+<div className="card">
+  <div className="card-body">
+  	<h1 className="text-center">Ultimos Temas creados </h1>
+  </div>
+</div>		
 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<table className="table table-filter">
+	<tbody>
+		<tr data-status="pagado">
+			<td>
+				<div className="media">
+					<a href="/" className="pull-left">
+						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
+					</a>
+					<div className="media-body">
+						<span className="media-meta pull-right">Febrero 13, 2016</span>
+						<h4 className="title">
+							Lorem Impsum
+							<span className="pull-right pagado">(Pagado)</span>
+						</h4>
+						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr data-status="pendiente">
+			<td>
+				<div className="media">
+					<a href="/" className="pull-left">
+						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
+					</a>
+					<div className="media-body">
+						<span className="media-meta pull-right">Febrero 13, 2016</span>
+						<h4 className="title">
+							Lorem Impsum
+							<span className="pull-right pendiente">(Pagado)</span>
+						</h4>
+						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+					</div>
+				</div>
+			</td>
+		</tr>	
+		<tr data-status="cancelado">
+			<td>
+				<div className="media">
+					<a href="/" className="pull-left">
+						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
+					</a>
+					<div className="media-body">
+						<span className="media-meta pull-right">Febrero 13, 2016</span>
+						<h4 className="title">
+							Lorem Impsum
+							<span className="pull-right pagado">(Pagado)</span>
+						</h4>
+						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+					</div>
+				</div>
+			</td>
+		</tr>			
+	</tbody>
+</table>
+
         </>
     )
 }
