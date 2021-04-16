@@ -17,5 +17,6 @@ export const types = {
     temaLogoutCleaining:'[Tema] Logout Cleaning',
 
 
+    comentarioLoad :    '[Comentario] Load Comentario',
 
 }

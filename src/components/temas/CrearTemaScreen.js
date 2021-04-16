@@ -6,6 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import Swal from 'sweetalert2';
 import { fileUpload } from '../../helpers/fileUpload';
 import CKEditor from 'ckeditor4-react';
+import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
 
 
 
@@ -17,22 +18,29 @@ export const CrearTemaScreen = () => {
     const [btnSave, setBtnSave] = useState(false);    
     let urlFileImage = "";
 
-    const [formValues, handleInputChange] = useForm({
+    let [formValues, handleInputChange] = useForm({
         titulo: '',
         descripcion: '',
         fileSelector: '',
     })
-    
 
-    const { titulo, descripcion, fileSelector } = formValues;
+    let { titulo, descripcion, fileSelector } = formValues;
+ 
+    const handleChangeEditor = (e) =>{
+        descripcion = e.editor.getData();
+
+        document.getElementById('textTema').innerHTML = descripcion
+    }
 
 
     // Envio data a api
     const saveTema = (e) => {
         e.preventDefault();
 
-        if (isFormValid()) {
-            dispatch(startNewTema(uid, titulo, descripcion, true, urlFileImage))
+        const textTemaFinal = document.getElementById('textTema').value;
+
+        if (isFormValid(textTemaFinal)) {
+            dispatch(startNewTema(uid, titulo, textTemaFinal, true, urlFileImage))
 
             Swal.fire({
                 position: 'top-end',
@@ -42,7 +50,7 @@ export const CrearTemaScreen = () => {
                 timer: 1500
             })
 
-            history.push("/crearTema");
+            history.push("/listarTema");
 
         };
 
@@ -50,7 +58,7 @@ export const CrearTemaScreen = () => {
 
 
     //Validacion de Formulario
-    const isFormValid = () => {
+    const isFormValid = (textTemaFinal) => {
 
         if (titulo.trim().length === 0) {
             Swal.fire({
@@ -62,7 +70,7 @@ export const CrearTemaScreen = () => {
 
             return false;
 
-        } else if (descripcion.trim().length === 0) {
+        } else if (textTemaFinal.trim().length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Ingrese la descripcion.',
@@ -76,43 +84,10 @@ export const CrearTemaScreen = () => {
         return true;
     }
 
-    // Cargo imagen de API
-    const cargaClick = () => {
-        document.querySelector('#fileSelector').click();
-    }
-
-//     (async () => {
-
-//     const ipAPI = '//api.ipify.org?format=json'
-
-//     const inputValue = fetch(ipAPI)
-//       .then(response => response.json())
-//       .then(data => data.ip)
-    
-//     const { value: ipAddress } = await Swal.fire({
-//       title: 'Enter your IP address',
-//       input: 'text',
-//       inputLabel: 'Your IP address',
-//       inputValue: inputValue,
-//       showCancelButton: true,
-//       inputValidator: (value) => {
-//         if (!value) {
-//           return 'You need to write something!'
-//         }
-//       }
-//     })
-    
-//     if (ipAddress) {
-//       Swal.fire(`Your IP address is ${ipAddress}`)
-//     }
-
-
-// })()
-
-
-
     const handlefileChange = async (e) => {
         const file = e.target.files[0];
+
+
         if (file) {
 
 
@@ -128,41 +103,79 @@ export const CrearTemaScreen = () => {
               });
 
 
-            const result =  await fileUpload(file);     
+            const urlFileImage =  await fileUpload(file); 
             Swal.close();
 
 
-            if (result === undefined) {
+            if (urlFileImage === undefined) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Format incorrect!',
-                    footer: 'image with format allowed png-jpeg-jpg'
+                    footer: 'image with format allowed png-jpeg-jpg',
+                    showClass: { popup: 'animate__animated animate__fadeInDown' },
+                    hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                    allowOutsideClick: false
     
                 })
             }else{
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     Swal.fire({
-                      title: 'Your uploaded picture',
                       imageUrl: e.target.result,
-                      imageAlt: 'The uploaded picture'
+                      allowOutsideClick: false,
+                      showDenyButton: false,
+                      showCancelButton: false,
+                      confirmButtonText: `Copiar url Imagen `,
+                      denyButtonText: `Don't save`,
+                      showClass: { popup: 'animate__animated animate__fadeInDown' },
+                      hideClass: { popup: 'animate__animated animate__fadeOutUp' },                      
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        const r = copiarAlPortapapeles(urlFileImage);
+
+                        Swal.fire( 
+                            'Url copiada! ',
+                            r, 
+                            'success')
+                      }                      
                     })
                   }
                 reader.readAsDataURL(file)                
-                urlFileImage = result;
-            }
-    
-        
+            }        
         }
     }
 
+    // Copia a Papelera
+    const copiarAlPortapapeles = (urlFileImage) => {
+        var copyText = document.getElementById("url");
+        copyText.value = urlFileImage;
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        return copyText.value;
+
+    }
+
+    // Cargo imagen de API
+    const cargaClick = () => {
+        document.querySelector('#fileSelector').click();
+    }
 
 
-
+    const [crumbs] = useState(['Home', 'Listar', 'Crear']);
+    const selected = crumb => {
+        if(crumb==="Home"){
+            history.push("/");
+        }
+        if(crumb==="Listar"){
+            history.push("/listarTema");
+        }     
+   }
 
     return (
         <>
+            <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
 
             <div className="card">
                 <div className="card-body">
@@ -197,19 +210,6 @@ export const CrearTemaScreen = () => {
                                         />
                                         <br />
                                     </div>
-
-                                    <div className="col-md-12">
-                                        <textarea type="text"
-                                            className="form-control"
-                                            id="descripcion"
-                                            placeholder="Ingrese texto"
-                                            rows="3"
-                                            name="descripcion"
-                                            value={descripcion}
-                                            onChange={handleInputChange}
-                                        />
-                                        <br />
-                                    </div>
                                     <div className="col-md-12">
                                         <div className="d-grid gap-2">
                                             <button type="button" onClick={cargaClick} className="btn btn-outline-success">
@@ -219,6 +219,38 @@ export const CrearTemaScreen = () => {
                                         <br />
                                     </div>
                                     <div className="col-md-12">
+                                            <input
+                                                type="text"
+                                                id="url"
+                                                name="url"
+                                                value=""
+                                                className="form-control"
+                                                readOnly
+                                            />
+                                            <br />
+                                    </div>
+
+                                    <div className="col-md-12">
+                                    <textarea id="textTema" name="textTema" style={{display: 'none'}} ></textarea>
+
+                                    <CKEditor
+                                            onChange={handleChangeEditor}
+                                            config={{
+                                                toolbar: [
+                                                    { name: 'document', items: [ 'Source', '-', 'Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', '-', 'Templates' ] },
+                                                    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+                                                    { name: 'editing', items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+                                                    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+                                                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                                                    { name: 'insert', items: [ 'Image', 'Table'] },
+                                                    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                                                    { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] }                                 
+                                                ]
+                                            }}                                              
+                                    />
+                                    <br />
+                                    </div>
+                                    <div className="col-md-6">
 
                                         <div className="d-grid gap-2">
                                             <button type="button" className="btn btn-outline-danger"
@@ -228,7 +260,7 @@ export const CrearTemaScreen = () => {
                                         </div>
                                         <br />
                                     </div>
-                                    <div className="col-md-12">
+                                    <div className="col-md-6">
                                         <div className="d-grid gap-2">
                                             <Link className="btn btn-outline-secondary" to="/listarTema" >
                                                 <i className="bi bi-arrow-return-left"></i> Volver
@@ -239,9 +271,7 @@ export const CrearTemaScreen = () => {
                                 </div>
                             </div>
 
-                            <CKEditor
-                    data="<p>Hello from CKEditor 4!</p>"
-                />
+
 
 
                         </div>

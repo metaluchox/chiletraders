@@ -1,7 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom';
+import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
 
 export const ReglasScreen = () => {
+    const history = useHistory();
+
+    const [crumbs] = useState(['Home', 'Reglas']);
+    const selected = crumb => {
+      if(crumb==="Home"){
+          history.push("/");
+      }
+  
+   }
+
     return (
         <>
             <div className="container">
@@ -14,9 +25,7 @@ export const ReglasScreen = () => {
                     </Link>
                     <hr />
                 </div>
-                <div className="d-grid gap-2">
-                    <Link className="btn btn-outline-secondary" to="/" >Volver</Link>
-                </div>
+                <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
                 <br/>
                 <div className="alert alert-warning" role="alert">
                     <h4 className="alert-heading">Reglas de los foros</h4>

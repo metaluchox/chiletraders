@@ -1,6 +1,6 @@
 import { db } from "../firebase/firebase-config";
 import { types } from "../types/types";
-import { loadTemas } from '../helpers/loadTemas'
+import { loadTemas, loadTemasById } from '../helpers/loadTemas'
 import { fileUpload } from "../helpers/fileUpload";
 import Swal from 'sweetalert2';
 
@@ -16,11 +16,13 @@ export const startNewTema = (uid, titulo, descripcion, status, url) => {
             descripcion: descripcion,
             url:url,
             status: status,
+            like:0,
+            comentario:[],
             dateCreation: new Date().getTime(),
             dateModify: new Date().getTime(),
         }
 
-        const docRef = await db.collection(`${uid}/chiletraders/tema`).add(newTema);
+        const docRef = await db.collection(`tema`).add(newTema);
 
         dispatch(activeTema(docRef.id, newTema));
 
@@ -35,12 +37,19 @@ export const activeTema = ( id, temas ) => ({
     }
 })
 
-export const starLoadingTemas = (uid) =>{
+export const starLoadingTemasById = (uid) =>{
     return async ( dispatch ) => {
-        const temas = await loadTemas( uid ); 
+        const temas = await loadTemasById( uid ); 
         dispatch( setTemas ( temas ) );
     }
 }
+export const starLoadingTemas = () =>{
+    return async ( dispatch ) => {
+        const temas = await loadTemas(); 
+        dispatch( setTemas ( temas ) );
+    }
+}
+
 
 export const setTemas = ( temas ) => ({
     type : types.temaLoad,

@@ -1,7 +1,84 @@
 import React from 'react'
 import './ContentCenter.css'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { TemasEntry } from '../temas/TemasEntry';
+import { loadTemas } from '../../helpers/loadTemas'
+
+
+
 export const ContentCenter = () => {
+	const dispatch =useDispatch();
+	const temas = loadTemas();
+	
+	temas.then(
+		r => {
+			
+			let divTemasMain = document.getElementById('divTemasMain');
+			divTemasMain.innerHTML = "";
+
+			
+			if(r.length>0){
+
+				for (var i=0; i<r.length; i++)
+				{
+
+					// console.log(r);
+
+					divTemasMain.innerHTML+=`
+					<div class="alert alert-secondary cursor: pointer;" onClick={handleEntryClick} role="alert">
+					<img src="../assets/image/avatar7.png " style="width:50px;" class="img-thumbnail" alt="..." />
+						<strong>${r[i].titulo}</strong> de usuario
+					</div>
+					`;
+				}
+
+
+			}else{
+
+				divTemasMain.innerHTML=`<div>
+				<div class="alert alert-warning text-center" role="alert">
+				Sin informacion.
+				</div>
+				</div>`;
+
+			}
+
+
+			const handleEntryClick = () => {
+
+				console.log("asd");
+				
+						// dispatch(
+						//     activeTema(id, {
+						//         titulo,
+						//         date,
+						//         descripcion,
+						//         status,
+						//         url
+						//     })
+						// );
+				
+						// history.push("/tema");
+					}
+
+		}
+		);
+
+
+
+	// dispatch( starLoadingTemas());
+
+	// const temas = useSelector(state => state.tema);
+	// let objTemas = {};
+
+	// if (temas?.temas) {
+	// 	objTemas = Object.values(temas.temas);
+	//   }
+	//   const validInfoTema = Object.entries(objTemas).length === 0;
+	
+
+
     return (
         <>
 		
@@ -12,61 +89,9 @@ export const ContentCenter = () => {
   </div>
 </div>		
 
-<table className="table table-filter">
-	<tbody>
-		<tr data-status="pagado">
-			<td>
-				<div className="media">
-					<a href="/" className="pull-left">
-						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
-					</a>
-					<div className="media-body">
-						<span className="media-meta pull-right">Febrero 13, 2016</span>
-						<h4 className="title">
-							Lorem Impsum
-							<span className="pull-right pagado">(Pagado)</span>
-						</h4>
-						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr data-status="pendiente">
-			<td>
-				<div className="media">
-					<a href="/" className="pull-left">
-						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
-					</a>
-					<div className="media-body">
-						<span className="media-meta pull-right">Febrero 13, 2016</span>
-						<h4 className="title">
-							Lorem Impsum
-							<span className="pull-right pendiente">(Pagado)</span>
-						</h4>
-						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-					</div>
-				</div>
-			</td>
-		</tr>	
-		<tr data-status="cancelado">
-			<td>
-				<div className="media">
-					<a href="/" className="pull-left">
-						<img src="../assets/image/avatar7.png" className="media-photo" alt="HOLA mnduo" />
-					</a>
-					<div className="media-body">
-						<span className="media-meta pull-right">Febrero 13, 2016</span>
-						<h4 className="title">
-							Lorem Impsum
-							<span className="pull-right pagado">(Pagado)</span>
-						</h4>
-						<p className="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-					</div>
-				</div>
-			</td>
-		</tr>			
-	</tbody>
-</table>
+<div className="my-3 p-3 bg-body rounded shadow-sm">
+		<div id="divTemasMain"></div>
+</div>
 
         </>
     )

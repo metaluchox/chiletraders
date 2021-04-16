@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
 import Swal from 'sweetalert2';
-import { starLoadingTemas } from '../../actions/temas';
+
 
 
 export const NavBar = () => {
@@ -32,8 +32,6 @@ export const NavBar = () => {
     })
 
   }
-
-    dispatch( starLoadingTemas( uid ));
   
   return (
     <>
