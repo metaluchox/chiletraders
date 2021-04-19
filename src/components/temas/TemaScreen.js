@@ -67,29 +67,25 @@ export const TemaScreen = () => {
 
             <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
 
-            <div className="container-fluid">
-                <div className="row border border-primary border border-5">
-                    <div className="col-md-12 border">
-                        <div className="col-md-12 text-left">
-                            <div>
-                                <h5>{active.titulo} </h5> de {auth.name}
-                            </div>
-                            <br />
-                            <div id="demo"></div>
+            <div class="alert alert-dark " role="alert">
+                <div className="col-md-12 text-left">
+                        <div>
+                            <h5>{active.titulo} </h5> de {auth.name}
                         </div>
-                    </div>
+                        <br />
+                        <div id="demo"></div>
                 </div>
-                <br/>
+            </div>
+
+            <div className="container-fluid">
                 <CrearComentarioScreen idTema={active.id} user={auth} />
                 <br/>
                 <div className="row">
-                    <h4 className="text-center border-secondary border border-3">Comentarios</h4>
-                    <div id="divComentario" className="border-secondary border border-3 pointer"></div>
+                    <h4 className="text-center alert alert-secondary">Comentarios</h4>
+                    <div id="divComentario" className="alert alert-secondary pointer"></div>
                 </div>
                 <br />
             </div>
-
-            
 
             <div className="d-grid gap-2">
                 <Link className="btn btn-outline-secondary" to="/listarTema" >Volver</Link>

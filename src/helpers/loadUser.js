@@ -28,12 +28,11 @@ export const loadUser = async ( request ) => {
 
 }
 
-export const loadUserById = async ( request ) => {  
+export const loadUserById = async ( uid ) => {  
     let user = "";
     try {
-        const userSnap = await db.collection(`${request.id}/chiletraders/usuario`).get();    
+        const userSnap = await db.collection(`${uid}/chiletraders/usuario`).get();    
         userSnap.forEach(doc => {
-            // console.log(doc.id, '=>', doc.data());
             user = doc.data();
           });       
         

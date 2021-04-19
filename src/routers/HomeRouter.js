@@ -8,6 +8,7 @@ import { MiPerfilScreen } from '../components/perfil/MiPerfilScreen'
 import { Footer } from '../components/ui/Footer'
 import { NavBar } from '../components/ui/NavBar'
 import { TemaScreen } from '../components/temas/TemaScreen'
+import { MonedaDetailScreen } from '../components/monedas/MonedaDetailScreen'
 
 export const HomeRouter = () => {
 
@@ -21,8 +22,9 @@ export const HomeRouter = () => {
                         <Route exact path="/home" component={HomeScreen} />
                         <Route exact path="/listarTema" component={ListarTemaScreen} />
                         <Route exact path="/crearTema" component={CrearTemaScreen} />
-                        <Route exact path="/miPerfil/:id" component={MiPerfilScreen} />
+                        <Route exact path="/miPerfil" component={MiPerfilScreen} />
                         <Route exact path="/tema" component={TemaScreen} />
+                        <Route exact path="/monedaDetalle" component={MonedaDetailScreen} />
                         <Redirect to="/home" />
                     </Switch>  
         <br />        

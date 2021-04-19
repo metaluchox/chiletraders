@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
 import Swal from 'sweetalert2';
+import { starLoadingUsuarioById } from '../../actions/user';
 
 
 
@@ -32,6 +33,13 @@ export const NavBar = () => {
     })
 
   }
+
+  const handleInfoUsuario = () =>{
+    dispatch(starLoadingUsuarioById(uid));
+    setTimeout(() => {
+        history.push("/miPerfil");
+    }, 500);
+  }  
   
   return (
     <>
@@ -57,7 +65,7 @@ export const NavBar = () => {
               <NavDropdown.Item  as={Link} to="/listarTema"><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
             </NavDropdown>
             <hr/>
-            <Nav.Link as={Link} to={`/miPerfil/${uid}`}><i className="bi bi-person-check"></i> Perfil</Nav.Link>
+            <Nav.Link onClick={handleInfoUsuario}><i className="bi bi-person-check"></i> Perfil</Nav.Link>
             <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
           </Nav>
         </Navbar.Collapse>

@@ -1,72 +1,42 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { startLogout } from '../../actions/auth';
-import { useSelector } from 'react-redux';
-
-
-import Swal from 'sweetalert2';
-import { DolarScreen } from '../monedas/DolarScreen';
-import { UfScreen } from '../monedas/UfScreen';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { starLoadingMonedas } from '../../actions/monedas';
+import { MonedaScreen } from '../monedas/MonedaScreen';
 
 export const ContentLeft = ( request ) => {
-
-  
-  const {uid}  = useSelector( state => state.auth );
-
-  const history = useHistory();
+	const history = useHistory();
   const dispatch =useDispatch();
 
-  const salirApp = () =>{
+  const monedas = useSelector(state => state.moneda.monedas);
+  const validoContenido = monedas.length === 0;
 
-    Swal.fire({
-      title: 'Estas seguro?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si'
-    }).then((result) => {
-      if (result.isConfirmed) {
-          dispatch( startLogout() );
-          history.push("/login");
-      }
-    })
+  const monedaSelect = ["uf","ivp","dolar","euro","utm","bitcoin", "dolar_intercambio","ipc","imacec","tpm", "libra_cobre", "tasa_desempleo"];
 
+  const handleDetailMoneda = () => {
+
+    console.log("handleDetailMoneda");
+
+    dispatch( starLoadingMonedas(monedaSelect));
+    history.push("/monedaDetalle");
   }
 
+
     return (
-        <>
-        
-        {
-        
-          (request.isLogged===true) &&  (    
+        <>      
 
-            <div>
-              <div className="d-grid gap-2">
-                <Link className="btn btn-outline-secondary"  as={Link} to={`/miPerfil/${uid}`}><i className="bi bi-person-circle"> Perfil </i></Link>
-              </div>  
-              <br/>
-              <div className="d-grid gap-2">
-                <Link className="btn btn-outline-secondary"  as={Link} to="/crearTema" ><i className="bi bi-bookmark-star"> Crear Tema </i></Link>
-              </div>  
-              <br/>
-            <div className="d-grid gap-2">
-              <Link className="btn btn-outline-danger" onClick={salirApp} to="" ><i className="bi bi-power"> Cerrar sesión</i></Link>
-            </div>            
-            <br/>
-            </div>
-            
-          ) 
-        }
-
-
-      <p className="text-center"><strong>ARTÍCULOS DE OPINIÓN</strong></p>
-      <DolarScreen/>
-      <UfScreen />
-      <DolarScreen/>
-      <UfScreen />      
+            {
+              !validoContenido &&
+              monedas.map(t => (
+                <MonedaScreen
+                  key={t.codigo}
+                  {...t}
+                />
+              ))
+            }
+             <div className="alert alert-primary text-center border border-primary" role="alert" onClick={handleDetailMoneda}>
+             <i className="bi bi-zoom-in"></i> Ver mas
+            </div>     
 
         </>
     )

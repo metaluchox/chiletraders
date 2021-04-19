@@ -19,4 +19,8 @@ export const types = {
 
     comentarioLoad :    '[Comentario] Load Comentario',
 
+
+    usuarioLoadById :   '[Usuario] Load Usuario Id',
+    monedasLoad :   '[Monedas] Load Monedas',
+
 }

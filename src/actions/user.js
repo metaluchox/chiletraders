@@ -1,18 +1,17 @@
-// import { types } from "../types/types";
-// import { firebase, googleAuthProvide } from "../firebase/firebase-config";
-//  import { finishLoading, startLoading } from "./ui";
-// import Swal from 'sweetalert2';
+import { loadUserById } from "../helpers/loadUser";
+import { types } from "../types/types";
 
-import { db } from "../firebase/firebase-config";
-
-const user = {
-    
-    nombre : 'luis',
-    email: 'asd@asd.cl',
-    password: 'asdasd',
-    repassword: 'asdasd',
-
-
+export const starLoadingUsuarioById = (uid) =>{
+    return async ( dispatch ) => {
+        const usuario = await loadUserById( uid ); 
+        dispatch( activeUsuario(uid, usuario) );
+    }
 }
 
-db.collection('user').add(user);
+export const activeUsuario = ( id, usuario ) => ({
+    type : types.usuarioLoadById,
+    payload: {
+        id,
+        ...usuario
+    }
+})

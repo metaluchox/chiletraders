@@ -43,12 +43,8 @@ export const ListarTemaScreen = () => {
       allowOutsideClick: false,
     })
 
+
   }
-
-
-
- 
-
 
   const temas = useSelector(state => state.tema);
 
@@ -95,11 +91,10 @@ export const ListarTemaScreen = () => {
             </Nav>
           </Col>
           <Col sm={9}>
-            <br/>
+
             <Tab.Content>
               <Tab.Pane eventKey="all">
-                <div className="my-3 p-3 bg-body rounded shadow-sm">
-
+              <div className="my-3 p-3 bg-body rounded shadow-sm">
                   {
 
                     /* 
@@ -120,9 +115,7 @@ export const ListarTemaScreen = () => {
 
 
                   }
-
                 </div>
-
                 {validInfoTema &&
                   <div>
                     <br />

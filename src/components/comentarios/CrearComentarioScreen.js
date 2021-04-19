@@ -162,7 +162,7 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
 
 
 <form onSubmit={enviarDatos}>
-            <div className="container-fluid border-danger border border-3" aria-label="Close">
+            <div className="alert alert-primary" aria-label="Close">
             <div className="row">    
                     <div className="col-md-12">
                         <input
@@ -214,18 +214,18 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
 
 
                     <div className="col-md-7 d-grid gap-2">
-                        <button type="submit" id="btnComentar" name="btnComentar" className="btn btn-outline-secondary" >
+                        <button type="submit" id="btnComentar" name="btnComentar" className="btn btn-secondary btn-sm" >
                             <i className="bi bi-chat-right-text"></i> Comentar
                         </button>
                     </div>
                     <div className="col-md-4 d-grid gap-2">
-                        <button type="button" onClick={cargaClick} className="btn btn-outline-success">
+                        <button type="button" onClick={cargaClick} className="btn btn-danger btn-sm">
                             <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
                         </button>
                     </div>
 
                     <div className="col-md-1 d-grid gap-2">
-                            <button type="button" className="btn btn-outline-danger" onClick={showDivComentario}>
+                            <button type="button" className="btn btn-danger btn-sm" onClick={showDivComentario}>
                                 <i className="bi bi-x-circle"></i>
                             </button>
                     </div> 
