@@ -137,21 +137,11 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
         (showComentario) ? setShowComentario(false) : setShowComentario(true) 
     }
 
-    const like = () => {
-        
-        Swal.fire({
-            title: '<h1><i class="bi bi-emoji-smile"></i></h1>',
-            text: 'Thank for you like!',
-          })
-        
-    }    
-
     return (
       <>
 { !showComentario &&
 <div className="row">
                 <ButtonGroup size="sm">
-                    <Button variant="secondary" onClick={like}><i className="bi bi-chat-right-text"> Like </i></Button>
                     <Button variant="secondary" onClick={showDivComentario}><i className="bi bi-chat-right-text"> Comentar {showComentario}</i></Button>
                 </ButtonGroup>
 </div>
@@ -162,7 +152,7 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
 
 
 <form onSubmit={enviarDatos}>
-            <div className="alert alert-primary" aria-label="Close">
+            <div className="alert alert-secondary" aria-label="Close">
             <div className="row">    
                     <div className="col-md-12">
                         <input
@@ -170,12 +160,18 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
                             id="fileSelector"
                             name="fileSelector"
                             style={{ display: 'none' }}
-                            onChange={handlefileChange}
-                            // value={fileSelector}
-                        />
+                            onChange={handlefileChange}                            
+                        />                        
+                    </div>
+                    <div className="col-md-12">
+                        <div className="d-grid gap-2">
+                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
+                                <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
+                            </button>
+                        </div>
                         <br />
                     </div>
-
+                    
                     <div className="col-md-12">
                         <input
                             type="text"
@@ -213,22 +209,15 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
 
 
 
-                    <div className="col-md-7 d-grid gap-2">
+                    <div className="col-md-12 d-grid gap-2">
                         <button type="submit" id="btnComentar" name="btnComentar" className="btn btn-secondary btn-sm" >
                             <i className="bi bi-chat-right-text"></i> Comentar
                         </button>
-                    </div>
-                    <div className="col-md-4 d-grid gap-2">
-                        <button type="button" onClick={cargaClick} className="btn btn-danger btn-sm">
-                            <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
+                        <button type="button" className="btn btn-danger btn-sm" onClick={showDivComentario}>
+                                <i className="bi bi-x-circle"></i> Cerrar
                         </button>
                     </div>
 
-                    <div className="col-md-1 d-grid gap-2">
-                            <button type="button" className="btn btn-danger btn-sm" onClick={showDivComentario}>
-                                <i className="bi bi-x-circle"></i>
-                            </button>
-                    </div> 
                 </div>      
                 <br/>                                       
       

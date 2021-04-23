@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { starLoadingComentariosById } from '../../actions/comentarios';
 import { CrearComentarioScreen } from '../comentarios/CrearComentarioScreen';
 import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
+import moment from "moment";
+
 import './temas.css';
 
 export const TemaScreen = () => {
@@ -14,11 +16,11 @@ export const TemaScreen = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [crumbs] = useState(['Home', 'Listar', 'tema']);
-
+    const temaDate = moment(active.dateCreation);
     const cantidadComentario = 0;
 
     if(active===null){
-        history.push("/listarTema");
+        window.location.href = "/listarTema";
     }
 
     const listaComentario =  dispatch( starLoadingComentariosById( active.id ));
@@ -30,9 +32,13 @@ export const TemaScreen = () => {
         if(result.length > cantidadComentario){
              for (var i=0; i<result.length; i++)
              {
+                let comentarioDate = moment(result[i].dateCreation);
+                let comentario = result[i].comentario.replace("<img", "<img style='width:100%'");
+                
                 divComentario.innerHTML+= '<div class="col-md-12">';
-                    divComentario.innerHTML+= '<h3>'+result[i].nombreUsuario+'</h3> dice ...';
-                    divComentario.innerHTML+= result[i].comentario;
+                    divComentario.innerHTML+= '<div class="badge bg-secondary">'+comentarioDate.format("YYYY-MM-DD : kk:mm:ss")+'</div>';
+                    divComentario.innerHTML+= '<h3>'+result[i].nombreUsuario+' dice... </h3> ';
+                    divComentario.innerHTML+= comentario;
                 divComentario.innerHTML+='</div>';
                 divComentario.innerHTML+='<hr/>';
              }  
@@ -52,6 +58,9 @@ export const TemaScreen = () => {
 
     }, 1000);
 
+
+  
+
     const selected = crumb => {
         if(crumb==="Home"){
             history.push("/");
@@ -61,16 +70,18 @@ export const TemaScreen = () => {
         }     
    }
 
+ 
 
     return (
         <>
 
             <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
 
-            <div class="alert alert-dark " role="alert">
+            <div className="alert alert-dark " role="alert">
                 <div className="col-md-12 text-left">
                         <div>
-                            <h5>{active.titulo} </h5> de {auth.name}
+                            <div className="badge bg-dark">{temaDate.format("YYYY-MM-DD : kk:mm:ss")}</div>
+                            <h5><strong>{active.titulo}</strong> de {auth.name} </h5>
                         </div>
                         <br />
                         <div id="demo"></div>

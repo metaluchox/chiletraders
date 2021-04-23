@@ -1,43 +1,60 @@
 import './MiPerfilScreen.css';
 
-import React, { useEffect, useState } from 'react'
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { NothingMessageScreen } from '../nothing/NothingMessageScreen';
-import { loadUserById } from '../../helpers/loadUser';
 import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
 import Swal from 'sweetalert2';
-import { useForm } from '../../hooks/useForm';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { updateUser } from '../../helpers/loadUser';
 
 
 
 export const MiPerfilScreen = () => {
 	const history = useHistory();
-	const id = useParams();
-	const active = true;
+	let active = true;
 
-	const usuario = useSelector(state => state.usuario);
-
+	let usuario = useSelector(state => state.usuario);
+	
 	if(usuario.active===null){
+		window.location.href = "/";
 		active = false;
 	}
 
-	const [formValues, handleInputChange] = useForm({
-
-		fullName: usuario.active.nombre,
-		fono: "asdsad",
-		password: '',
-		repassword: "",
-		
+	const [datos, setDatos] = useState({
+		about : usuario?.active.about,
+		fullName: usuario?.active.nombre,
+		fono: usuario?.active.fono
 	})
 
-	const { fullName, fono, password, repassword } = formValues;
-
-	const handleActualizarInfo = () => {
-		Swal.fire('Any fool can use a computer')
+	const handleInputChange = (e) => {
+			setDatos({
+				...datos,
+				[e.target.name] : e.target.value
+			})
 	}
 
+	const actualizarUsuario = (e) => {
+		e.preventDefault();
+
+		Swal.fire({
+			title: 'Do you want to save the changes?',
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: `Save`,
+			denyButtonText: `Don't save`,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				updateUser(datos, usuario.active.uid);
+				Swal.fire({
+					icon: 'success',
+					title: 'Updated',
+				})
+			}
+		})
+
+    }
 
 	const [crumbs] = useState(['Home', 'Perfil']);
 	const selected = crumb => {
@@ -45,7 +62,6 @@ export const MiPerfilScreen = () => {
 			history.push("/");
 		}
 	}
-
 
 	return (
 		<>
@@ -55,7 +71,7 @@ export const MiPerfilScreen = () => {
 					?
 					<NothingMessageScreen />
 					:
-
+					<form onSubmit={actualizarUsuario}>
 					<div className="container">
 						<div className="row gutters">
 							<div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -64,16 +80,14 @@ export const MiPerfilScreen = () => {
 										<div className="account-settings">
 											<div className="user-profile">
 												<div className="user-avatar">
-													<img id="myImg" src={`${usuario.active.photoUrl}`} alt="Usuario" />
+													<img id="myImg" src={(usuario?.active.photoUrl===null) ? "../assets/image/avatar7.png" : usuario?.active.photoUrl} alt="Usuario" />
 												</div>
-												<h5 id="h5-user-name" className="user-name">{usuario.active.nombre}</h5>
-												<h6 id="h6-email" className="user-email">{usuario.active.email}</h6>
+												<h5 id="h5-user-name" className="user-name">{usuario?.active.nombre}</h5>
+												<h6 id="h6-email" className="user-email">{usuario?.active.email}</h6>
 											</div>
 											<div className="about">
 												<h5>Acerca de </h5>
-												<textarea id="about" name="about">
-													{usuario.active.about}
-												</textarea>
+												<p>{datos.about}</p>
 											</div>
 										</div>
 									</div>
@@ -92,9 +106,9 @@ export const MiPerfilScreen = () => {
 													<input type="text"
 														className="form-control"
 														id="fullName"
-														placeholder="Enter full name"
-														name="fullName"
-														value={fullName}
+														placeholder="Enter nombre completo"
+														name="fullName"	
+														value={datos.fullName}
 														onChange={handleInputChange} />
 												</div>
 											</div>
@@ -106,41 +120,33 @@ export const MiPerfilScreen = () => {
 														id="fono"
 														placeholder="Enter Celular "
 														name="fono"
-														value={fono}
+														value={datos.fono}
 														onChange={handleInputChange} />
 												</div>
 											</div>
-											<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div className="form-group">
-													<label htmlFor="password">Password</label>
-													<input type="password"
+													<label htmlFor="about">Acerca de</label>
+													<textarea
+														id="about"
+														name="about"
+														placeholder="about me"
 														className="form-control"
-														id="password"
-														placeholder="Enter password"
-														name="password"
-														value={password}
-														onChange={handleInputChange} />
+														value={datos.about}
+														onChange={handleInputChange} 
+													/>
 												</div>
 											</div>
-											<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-												<div className="form-group">
-													<label htmlFor="password">Repite Password</label>
-													<input type="password"
-														className="form-control"
-														id="repassword"
-														placeholder="Enter re-password"
-														name="repassword"
-														value={repassword}
-														onChange={handleInputChange} />
-												</div>
-											</div>
+
+
+
 										</div>
 										<br />
 										<div className="row gutters">
 											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div className="d-grid gap-2">
-													<button type="submit" id="submit" name="submit" className="btn btn-outline-danger">Actualizar</button>
-													<Link type="button" className="btn btn-outline-secondary" to={`/home`}>Cancel</Link>
+													<button type="submit" id="submit" name="submit" className="btn btn-outline-danger  btn-sm">Actualizar</button>
+													<Link type="button" className="btn btn-outline-secondary  btn-sm" to={`/home`}>Cancel</Link>
 												</div>
 											</div>
 										</div>
@@ -149,6 +155,7 @@ export const MiPerfilScreen = () => {
 							</div>
 						</div>
 					</div>
+					</form>
 
 			}
 

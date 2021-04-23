@@ -1,41 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
-import Swal from 'sweetalert2';
-import { startLogout } from '../../actions/auth';
-import { starLoadingUsuarioById } from "../../actions/user";
+import { MonedaConvertir } from '../monedas/MonedaConvertir';
+import NumberFormat from 'react-number-format';
 
 export const ShortCutScreen = ( request ) => {
-    const {uid}  = useSelector( state => state.auth );
-    const history = useHistory();
-    const dispatch =useDispatch();
-
-    const salirApp = () => {
-        Swal.fire({
-          title: 'Estas seguro?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si'
-        }).then((result) => {
-          if (result.isConfirmed) {
-              dispatch( startLogout() );
-              history.push("/login");
-          }
-        })
-    
-      }
-
-      const handleInfoUsuario = () =>{
-        dispatch(starLoadingUsuarioById(uid));
-        setTimeout(() => {
-            history.push("/miPerfil");
-        }, 500);
-      }
-
+    const monedas = useSelector(state => state.moneda.monedas);
+    const validoContenido = monedas.length === 0; 
     const settings = {
         dots: true,
         infinite: false,
@@ -73,41 +44,34 @@ export const ShortCutScreen = ( request ) => {
 
     return (
         <>
-               {
-        
-        (request.isLogged===true) &&  ( 
-        <div>
-            <Slider {...settings} >
-                <div className="container link text-center" onClick={handleInfoUsuario} >
-                    <div className="alert alert-primary" role="alert">
-                         <i className="bi bi-person-circle"> Perfil </i>
-                    </div>
+            {
+
+                <div>
+                    <Slider {...settings} >
+                        {
+                            !validoContenido &&
+                            monedas.map(m => (
+
+                                <div className="col-md-4 ms-md-auto border border-primary mb-1 rounded text-center"
+                                    style={{ cursor: "pointer" }}
+                                    key={m.codigo}>
+                                    <div className="card-header">{m.nombre}</div>
+                                    <div className="card-body text-primary">
+                                        <h5 className="card-title">
+                                            <NumberFormat value={m.valor} displayType={'text'} thousandSeparator={true} prefix={'$'} /> {m.unidad_medida}
+                                        </h5>
+                                        <div>Fecha {m.fecha}</div>
+                                    </div>
+                                    <div className="card-footer">
+                                        <MonedaConvertir data={m} />
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </Slider>
                 </div>
-                <Link className="container link text-center" as={Link} to="/crearTema">
-                    <div className="alert alert-primary" role="alert">
-                        <i className="bi bi-bookmark-star"> Crear Tema </i>
-                    </div>
-                </Link>
-                <div className="container linkOff text-center">
-                    <div className="alert alert-primary" role="alert">
-                        Listas de temas
-                    </div>
-                </div>
-                <div className="container linkOff text-center">
-                    <div className="alert alert-primary" role="alert">
-                        Reglas
-                    </div>
-                </div>
-                <div className="container link text-center" onClick={salirApp}>
-                    <div className="alert alert-danger" role="alert">
-                        <i className="bi bi-power"> Cerrar sesión</i>
-                    </div>
-                </div>                
-            </Slider>
-            <br/><br/>
-        </div>
-   ) 
-}
-</>
+               
+            }
+        </>
     )
 }

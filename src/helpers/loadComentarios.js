@@ -2,7 +2,7 @@ import { db } from "../firebase/firebase-config"
 
 export const loadComentariosById = async (uid) => {
 
-    const comentarioSnap = await db.collection(`tema/${uid}/comentario`).get();
+    const comentarioSnap = await db.collection(`tema/${uid}/comentario`).limit(15).orderBy('dateCreation', 'desc').get();
     const comentarios = []
 
     comentarioSnap.forEach(snapHijo => {

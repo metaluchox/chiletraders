@@ -1,43 +1,38 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { starLoadingMonedas } from '../../actions/monedas';
-import { MonedaScreen } from '../monedas/MonedaScreen';
+import Swal from 'sweetalert2';
 
 export const ContentLeft = ( request ) => {
-	const history = useHistory();
-  const dispatch =useDispatch();
 
-  const monedas = useSelector(state => state.moneda.monedas);
-  const validoContenido = monedas.length === 0;
+  const implementar = () =>{
+    Swal.fire('Implementar')
 
-  const monedaSelect = ["uf","ivp","dolar","euro","utm","bitcoin", "dolar_intercambio","ipc","imacec","tpm", "libra_cobre", "tasa_desempleo"];
-
-  const handleDetailMoneda = () => {
-
-    console.log("handleDetailMoneda");
-
-    dispatch( starLoadingMonedas(monedaSelect));
-    history.push("/monedaDetalle");
   }
 
-
     return (
-        <>      
+      <>
+        <div className="card bg-light text-dark border-primary mb-3 text-center" style={{ cursor: "pointer" }} onClick={implementar}>
+          <img src="../../assets/image/wall-street-toro-rect.jpg" className="card-img" alt="..." style={{ opacity: "0.3" }} />
+          <div className="card-img-overlay">
+            <h5 className="card-title">Flash de marcado</h5>
+            <p className="card-text">Last updated 3 mins ago</p>
+            <hr />
+            <p className="mb-0">Ver más <i className="bi bi-zoom-in"></i></p>            
+          </div>
+        </div>
 
-            {
-              !validoContenido &&
-              monedas.map(t => (
-                <MonedaScreen
-                  key={t.codigo}
-                  {...t}
-                />
-              ))
-            }
-             <div className="alert alert-primary text-center border border-primary" role="alert" onClick={handleDetailMoneda}>
-             <i className="bi bi-zoom-in"></i> Ver mas
-            </div>     
+        <div className="alert alert-primary text-center" role="alert" style={{ cursor: "pointer" }} onClick={implementar}>
+          <h4 className="alert-heading">Crónicas</h4>
+          <p className="mb-0"> title and make up the bulk of the card's content.</p>
+          <hr />
+          <p className="mb-0">Ver más <i className="bi bi-zoom-in"></i></p>
+        </div>
 
-        </>
+        <div className="alert alert-primary text-center" role="alert" style={{ cursor: "pointer" }} onClick={implementar}>
+          <h4 className="alert-heading">Artículos de opinión</h4>
+          <p className="mb-0"> title and make up the bulk of the card's content.</p>
+          <hr />
+          <p className="mb-0">Ver más <i className="bi bi-zoom-in"></i></p>
+        </div>
+      </>
     )
 }

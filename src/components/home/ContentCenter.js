@@ -17,59 +17,39 @@ export const ContentCenter = () => {
 
 
     return (
-        <>
-		
+      <>
+        <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Temas de Discusión</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Fecha creacion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
 
-<div className="card">
-  <div className="card-body">
-  	<h1 className="text-center" >Ultimos Temas creados </h1>
-  </div>
+              !validInfoTema &&
+              objTemas.map(t => (
+                <TemasEntry
+                  key={t.id}
+                  {...t}
+                />
+              ))
 
-  <div className="my-3 p-3 bg-body rounded shadow-sm">
+            }
 
-{
-
-  /* 
-  *************************************
-  [INIT] TEMAS PROPIOS DEL USUARIO  
-  *************************************
-  */
-
-  !validInfoTema &&
-
-
-  objTemas.map(t => (
-    <TemasEntry
-      key={t.id}
-      {...t}
-    />
-  ))
-
-}
-
-</div>
-
-{validInfoTema &&
-<div>
-  <br />
-  <div className="alert alert-warning text-center" role="alert">
-    Sin informacion.
-    </div>
-</div>
-
-/* 
-*************************************
-[END] TEMAS PROPIOS DEL USUARIO  
-*************************************
-*/
-}
+            {validInfoTema &&
+              <tr>
+                <td colSpan="4" className="text-center">Sin Información</td>
+              </tr>
+            }
 
 
 
-</div>		
-
-<div className="my-3 p-3 bg-body rounded shadow-sm">
-</div>
-        </>
+          </tbody>
+        </table>
+      </>
     )
 }

@@ -5,6 +5,7 @@ import isEmail from 'validator/lib/isEmail';
 import { removeError, setError } from '../../actions/ui';
 import { useForm } from '../../hooks/useForm';
 import { startRegisterEmailPassword } from '../../actions/auth';
+import { ResetPassword } from '../login/ResetPassword';
 
 export const RegisterScreen = () => {
 
@@ -89,10 +90,6 @@ export const RegisterScreen = () => {
 
 */}
 
-
-
-
-
                         <div className="col-md-8 py-5 border">                            
                             <h4 className="pb-4">Please fill with your details</h4>
 
@@ -159,6 +156,7 @@ export const RegisterScreen = () => {
     <div className="col-md-12">
         <div className="d-grid gap-2">
             <Link to="/login" className="btn btn-link"> Volver </Link>  
+            <ResetPassword />
         </div>
         <br/>
     </div>             

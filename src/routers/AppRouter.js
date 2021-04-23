@@ -16,7 +16,6 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
-import { MonedaDetailScreen } from '../components/monedas/MonedaDetailScreen';
 
 export const AppRouter = () => {
 
@@ -100,10 +99,6 @@ export const AppRouter = () => {
             <Route 
             exact path="/ruler" 
             component={ReglasScreen} />
-
-          {/* <Route 
-            exact path="/monedaDetalle" 
-            component={MonedaDetailScreen} />             */}
 
             <PrivateRoute 
               path="/"

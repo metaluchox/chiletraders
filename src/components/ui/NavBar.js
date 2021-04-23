@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
@@ -44,10 +44,12 @@ export const NavBar = () => {
   return (
     <>
 
+<div className="container">
+  <div className="row">
 
        <div className="col-lg-12">
          
-      <Navbar className="navbar-custom_ct fixed-top" variant="dark" expand="lg">
+      <Navbar className="navbar-custom_ct fixed-top text-center" variant="dark" expand="sm">
         <Navbar.Brand as={Link} to="/">
 
          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
@@ -59,11 +61,7 @@ export const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/ruler" ><i className="bi bi-cup-straw"></i> Reglas</Nav.Link>
-            <NavDropdown title="Temas" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear </NavDropdown.Item>
-              <NavDropdown.Item  as={Link} to="/listarTema"><i className="bi bi-mic-fill"></i> Listar </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear </Nav.Link>
             <hr/>
             <Nav.Link onClick={handleInfoUsuario}><i className="bi bi-person-check"></i> Perfil</Nav.Link>
             <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
@@ -71,6 +69,9 @@ export const NavBar = () => {
         </Navbar.Collapse>
       </Navbar>
       </div>
+      </div>
+      </div>
+
     </>
   )
 }

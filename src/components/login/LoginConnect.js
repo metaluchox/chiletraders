@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from "react-redux";
 import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
-
+import { ResetPassword } from './ResetPassword';
 
 export const LoginConnect = () => {
 
@@ -26,6 +26,7 @@ export const LoginConnect = () => {
     const ingresarByGoogle = () =>{
         dispatch( startGoogleLogin() );
     }
+
 
 
     return (
@@ -73,8 +74,8 @@ export const LoginConnect = () => {
                             <Link onClick={ ingresarByGoogle } className="btn btn-danger" to="">                                
                                 <i className="bi bi-google text-center"></i>  Ingresa con <b>Google</b>
                             </Link>
-      
                             <Link to="/register" className="text-center link" > <i className="bi bi-person-circle"></i> No tiene cuenta </Link>
+                            <ResetPassword />
                         </div>
                     </form>
                 </div>

@@ -20,9 +20,11 @@ export const loadTemasById = async (uid) => {
 
 }
 
-export const loadTemas = async () => {
+export const loadTemas = async (limit) => {
+
+    if(limit === null) limit = 25;
     
-    const temaSnap = await db.collection(`tema`).get();
+    const temaSnap = await db.collection(`tema`).orderBy('dateCreation', 'desc').limit(limit).get();
     const temas = []
 
     temaSnap.forEach(snapHijo => {

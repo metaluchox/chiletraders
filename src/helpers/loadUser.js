@@ -43,3 +43,41 @@ export const loadUserById = async ( uid ) => {
     return user;
 
 }
+
+export const updateUser = async ( data, uid ) => {  
+    try {
+
+        let idDoc = "";
+        const userRef = db.collection(`${uid}/chiletraders/usuario`);
+        const doc = await  userRef.get();
+        let response = "";
+
+        doc.forEach(
+            doc => { 
+                idDoc = doc.id; 
+            }
+        );
+ 
+        userRef.doc(idDoc)
+                .update({
+                    about: data.about,
+                    fono: data.fono,
+                    nombre: data.fullName,
+                })
+                .then(r => {
+                    response = "Actualizado";
+                })
+                .catch( e => {
+                    console.log("Error "+e);
+                    response = "Error "+e;
+                })
+          
+                return response;
+        
+    } catch (error) {
+        console.error(error)
+    }
+
+    
+
+}

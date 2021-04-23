@@ -62,8 +62,6 @@ export const startGoogleLogin = () => {
                                                 nombre: user.displayName,
                                                 email: user.email, 
                                                 photoUrl: user.photoURL,
-                                                password: '',
-                                                repassword: '',
                                                 fono: '',
                                                 about: '',
                                                 dateIni: new Date().getTime(),
@@ -126,8 +124,6 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                                 nombre: user.displayName,
                                                 email: user.email, 
                                                 photoUrl: user.photoURL,
-                                                password: '',
-                                                repassword: '',
                                                 fono: '',
                                                 about: '',
                                                 dateIni: new Date().getTime(),
@@ -156,6 +152,29 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                 console.log(e);
                                 Swal.fire('Error', e.message, 'error');
                         })
+
+        }
+}
+
+export const startRecuperarPass = (email) => {
+        return (dispatch) => {
+                firebase.auth().sendPasswordResetEmail(email)
+                        .then(function() {
+                                Swal.fire(`
+                                        <div class="alert alert-primary" role="alert">
+                                                        <i class="bi bi-check2"></i> 
+                                                        Se ha enviado un correo electrónico a su cuenta ${email}, siga los pasos indicados.
+                                        </div>
+                                `)                                
+                        })
+                        .catch(function(error) {
+                                Swal.fire(`
+                                        <div class="alert alert-danger" role="alert">
+                                                <i class="bi bi-exclamation-octagon-fill"></i> Error : ${error}
+                                        </div>
+                                `)                                  
+                                console.log(error);
+                        });
 
         }
 }

@@ -13,7 +13,7 @@ import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
 export const CrearTemaScreen = () => {
 
     const dispatch = useDispatch();
-    const { uid } = useSelector(state => state.auth);
+    const auth = useSelector(state => state.auth);
     const history = useHistory();
     const [btnSave, setBtnSave] = useState(false);    
     let urlFileImage = "";
@@ -32,15 +32,13 @@ export const CrearTemaScreen = () => {
         document.getElementById('textTema').innerHTML = descripcion
     }
 
-
-    // Envio data a api
     const saveTema = (e) => {
         e.preventDefault();
 
         const textTemaFinal = document.getElementById('textTema').value;
 
         if (isFormValid(textTemaFinal)) {
-            dispatch(startNewTema(uid, titulo, textTemaFinal, true, urlFileImage))
+            dispatch(startNewTema(auth, titulo, textTemaFinal, true, urlFileImage))
 
             Swal.fire({
                 position: 'top-end',
@@ -179,8 +177,6 @@ export const CrearTemaScreen = () => {
 
             <div className="card">
                 <div className="card-body">
-                    <h1 className="text-center"><i className="bi bi-list-check"></i> Crear </h1>
-
                     <form
                         onSubmit={saveTema}
                         method="post">
@@ -212,7 +208,7 @@ export const CrearTemaScreen = () => {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="d-grid gap-2">
-                                            <button type="button" onClick={cargaClick} className="btn btn-outline-success">
+                                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
                                                 <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
                                             </button>
                                         </div>

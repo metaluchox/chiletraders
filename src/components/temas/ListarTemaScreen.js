@@ -20,7 +20,7 @@ export const ListarTemaScreen = () => {
   }
 
   const allTab = () =>{
-    dispatch( starLoadingTemas());
+    dispatch( starLoadingTemas(null));
 
     Swal.fire({
       title: '<div class="spinner-grow text-primary" role="status"> <span class="visually-hidden"></span></div>',  
@@ -56,7 +56,7 @@ export const ListarTemaScreen = () => {
 
   const validInfoTema = Object.entries(objTemas).length === 0;
 
-  const [crumbs] = useState(['Home', 'Listar']);
+  const [crumbs] = useState(['Home', 'Lista']);
   const selected = crumb => {
     if(crumb==="Home"){
         history.push("/");
@@ -66,43 +66,38 @@ export const ListarTemaScreen = () => {
 
   return (
     <>
-      <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
-
-      <div className="card">
-        <div className="card-body">
-          <h1 className="text-center"><i className="bi bi-list-check"></i> Temas</h1>
-        </div>
-      </div>
-{/* defaultActiveKey="first" */} 
+      <BreadcrumbScreen crumbs={crumbs} selected={selected} />
+      {/* defaultActiveKey="first" */}
       <Tab.Container id="left-tabs-example" >
         <Row>
           <Col sm={2}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
                 <Nav.Link eventKey="all" className="text-center" onClick={allTab}><i className="bi bi-chat-right-quote"></i> Todos </Nav.Link>
-              </Nav.Item>              
+              </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="first" className="text-center" onClick={firstTab}><i className="bi bi-chat-right-quote"></i> Creados por ti </Nav.Link>
               </Nav.Item>
-              <br/>
-              <button id ="btnCrearTema" className="btn btn-outline-danger" onClick={crearTema} >Crear</button>
-              <br/>
+              <br />
+              <button id="btnCrearTema" className="btn btn-outline-danger" onClick={crearTema} >Crear</button>
+              <br />
               <Link className="btn btn-outline-secondary" to="/" >Volver</Link>
             </Nav>
           </Col>
           <Col sm={9}>
-
             <Tab.Content>
               <Tab.Pane eventKey="all">
-              <div className="my-3 p-3 bg-body rounded shadow-sm">
-                  {
-
-                    /* 
-                    *************************************
-                    [INIT] TEMAS PROPIOS DEL USUARIO  
-                    *************************************
-                    */
-
+                <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Temas de Discusión</th>
+                      <th scope="col">Mensajes</th>
+                      <th scope="col">Ultimos Mensaje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
                       !validInfoTema &&
                       objTemas.map(t => (
                         <TemasEntry
@@ -110,74 +105,50 @@ export const ListarTemaScreen = () => {
                           {...t}
                         />
                       ))
-                   
-
-
-
-                  }
-                </div>
-                {validInfoTema &&
-                  <div>
-                    <br />
-                    <div className="alert alert-warning text-center" role="alert">
-                      Sin informacion.
-                </div>
-                  </div>
-
-                  /* 
-                  *************************************
-                  [END] TEMAS PROPIOS DEL USUARIO  
-                  *************************************
-                  */
-                }
+                    }
+                    {validInfoTema &&
+                      <tr>
+                        <td colSpan="4" className="text-center">Sin Información</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
               </Tab.Pane>
 
               <Tab.Pane eventKey="first">
-                <div className="my-3 p-3 bg-body rounded shadow-sm">
+                <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Temas de Discusión</th>
+                      <th scope="col">Mensajes</th>
+                      <th scope="col">Ultimos Mensaje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      !validInfoTema &&
+                      objTemas.map(t => (
+                        <TemasEntry
+                          key={t.id}
+                          {...t}
+                        />
+                      ))
 
-                  {
+                    }
 
-                    /* 
-                    *************************************
-                    [INIT] TEMAS PROPIOS DEL USUARIO  
-                    *************************************
-                    */
-
-                    !validInfoTema &&
-
-
-                    objTemas.map(t => (
-                      <TemasEntry
-                        key={t.id}
-                        {...t}
-                      />
-                    ))
-
-                  }
-
-                </div>
-
-                {validInfoTema &&
-                  <div>
-                    <br />
-                    <div className="alert alert-warning text-center" role="alert">
-                      Sin informacion.
-					            </div>
-                  </div>
-
-                  /* 
-                  *************************************
-                  [END] TEMAS PROPIOS DEL USUARIO  
-                  *************************************
-                  */
-                }
-
+                    {validInfoTema &&
+                      <tr>
+                        <td colSpan="4" className="text-center">Sin Información</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
               </Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>
       </Tab.Container>
     </>
-
   )
 }

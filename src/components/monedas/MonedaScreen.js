@@ -1,8 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { MonedaConvertir } from './MonedaConvertir';
 
 export const MonedaScreen = ({ nombre, valor }) => {
+    const history = useHistory();
+    const dispatch =useDispatch();
+
     return (
-        <div className="alert alert-success text-center border border-success" role="alert" >
+        <div className="alert alert-success text-center border border-success" role="alert" style={{cursor:"pointer"}} >
 
             <div className="container">
                 <div className="row">

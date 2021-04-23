@@ -1,4 +1,3 @@
-import { loadUserById } from "../helpers/loadUser";
 import { loadValorMonedas } from "../helpers/loadValorMonedas";
 import { types } from "../types/types";
 

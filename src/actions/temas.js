@@ -5,13 +5,12 @@ import { fileUpload } from "../helpers/fileUpload";
 import Swal from 'sweetalert2';
 
 
-export const startNewTema = (uid, titulo, descripcion, status, url) => {
+export const startNewTema = (auth, titulo, descripcion, status, url) => {
     return async(  dispatch, getState ) => {
 
-        const { uid } = getState().auth;
-
         const newTema = {
-            idUsuario: uid,
+            idUsuario: auth.uid,
+            nombreUsuario: auth.name,
             titulo: titulo,
             descripcion: descripcion,
             url:url,
@@ -43,9 +42,9 @@ export const starLoadingTemasById = (uid) =>{
         dispatch( setTemas ( temas ) );
     }
 }
-export const starLoadingTemas = () =>{
+export const starLoadingTemas = (limit) =>{
     return async ( dispatch ) => {
-        const temas = await loadTemas(); 
+        const temas = await loadTemas(limit); 
         dispatch( setTemas ( temas ) );
     }
 }
