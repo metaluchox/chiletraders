@@ -2,7 +2,9 @@ import { db } from "../firebase/firebase-config"
 
 export const loadTemasById = async (uid) => {
 
-    const temaSnap = await db.collection(`tema`).where('idUsuario', '==', uid).get();
+    const temaSnap = await db.collection(`tema`)
+                                    .where('idUsuario', '==', uid)
+                                    .get();
     const temas = []
 
     temaSnap.forEach(snapHijo => {
@@ -22,9 +24,13 @@ export const loadTemasById = async (uid) => {
 
 export const loadTemas = async (limit) => {
 
-    if(limit === null) limit = 25;
-    
-    const temaSnap = await db.collection(`tema`).orderBy('dateCreation', 'desc').limit(limit).get();
+    if(limit === null) limit = 50;
+
+    const temaSnap = await db.collection(`tema`)
+                                // .where('status', '==', true)
+                                .orderBy('dateCreation', 'desc')
+                                .limit(limit)
+                                .get();
     const temas = []
 
     temaSnap.forEach(snapHijo => {
@@ -39,6 +45,5 @@ export const loadTemas = async (limit) => {
     })
 
     return temas;
-
 
 }

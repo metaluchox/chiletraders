@@ -4,13 +4,26 @@ import { finishLoading, startLoading } from "./ui";
 import Swal from 'sweetalert2';
 
 export const startLoginEmailPassword = (email, password) => {
+        let isAdmin = false;
+
         return (dispatch) => {
 
                 dispatch(startLoading());
 
                 firebase.auth().signInWithEmailAndPassword(email, password)
-                        .then(({ user }) => {
-                                dispatch(login(user.uid, user.displayName))
+                        .then( async ({ user }) => {
+
+                        // Create a reference to the cities collection
+                        const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
+                        // Create a query against the collection
+                        const queryRef = await userRef.where('email', '==', user.email).get();
+
+                        if (!queryRef.empty) {
+                                queryRef.forEach(doc => {
+                                        isAdmin = (doc.data().admin === undefined) ? false : doc.data().admin;
+                                });  
+                        }
+                                dispatch(login(user.uid, user.displayName, isAdmin))
                                 dispatch(finishLoading());
 
                                       const Toast = Swal.mixin({
@@ -29,10 +42,7 @@ export const startLoginEmailPassword = (email, password) => {
                                         icon: 'success',
                                         title: 'Signed in successfully '+user.displayName
                                       })
-
-
-
-                                      
+        
 
                         })
                         .catch(e => {
@@ -44,6 +54,7 @@ export const startLoginEmailPassword = (email, password) => {
 }
 
 export const startGoogleLogin = () => {
+        let isAdmin = false;
         return (dispatch) => {
 
                 firebase.auth().signInWithPopup(googleAuthProvide)
@@ -64,19 +75,21 @@ export const startGoogleLogin = () => {
                                                 photoUrl: user.photoURL,
                                                 fono: '',
                                                 about: '',
+                                                admin: false,
                                                 dateIni: new Date().getTime(),
                                                 dateModify: new Date().getTime(),
                                                                                 
                                         }
 
-                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);                                        
+                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);         
 
-
-                                }                                  
-
-                                dispatch(
-                                        login(user.uid, user.displayName)
-                                )
+                                }else{
+                                        queryRef.forEach(doc => {
+                                                isAdmin = (doc.data().admin === undefined) ? false : doc.data().admin;
+                                        });  
+                                }         
+                
+                                dispatch( login (user.uid, user.displayName, isAdmin) )
 
                                 const Toast = Swal.mixin({
                                         toast: true,
@@ -126,6 +139,7 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                                 photoUrl: user.photoURL,
                                                 fono: '',
                                                 about: '',
+                                                admin: false,
                                                 dateIni: new Date().getTime(),
                                                 dateModify: new Date().getTime(),
                                                                                 
@@ -143,9 +157,8 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                         showConfirmButton: false,
                                         timer: 2000
                                       })
-
                                 dispatch(
-                                        login(user.uid, user.displayName)
+                                        login(user.uid, user.displayName, user.admin)
                                 )
                         })
                         .catch(e => {
@@ -179,12 +192,12 @@ export const startRecuperarPass = (email) => {
         }
 }
 
-export const login = (uid, displayName) => ({
-
+export const login = (uid, displayName,admin) => ({
         type: types.login,
         payload: {
                 uid,
-                displayName
+                displayName,
+                admin
         }
 
 })
@@ -193,7 +206,7 @@ export const startLogout = () => {
 
         return (dispatch) => {
                 firebase.auth().signOut();
-
+                dispatch(logout());
 
                 const Toast = Swal.mixin({
                         toast: true,

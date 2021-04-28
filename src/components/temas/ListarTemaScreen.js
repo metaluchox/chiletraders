@@ -85,15 +85,18 @@ export const ListarTemaScreen = () => {
             </Nav>
           </Col>
           <Col sm={9}>
+          
             <Tab.Content>
               <Tab.Pane eventKey="all">
-                <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+                <br/>
+              <div className="tableTema">
+                <table className="table table-sm table-striped table-hover border rounded small" style={{cursor:"pointer"}} >
                   <thead>
                     <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Temas de Discusión</th>
-                      <th scope="col">Mensajes</th>
-                      <th scope="col">Ultimos Mensaje</th>
+                      <th scope="col" colSpan="2">Temas de Discusión</th>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Comentarios</th>
+                      <th scope="col" colSpan="2">Fecha creacion</th>      
                     </tr>
                   </thead>
                   <tbody>
@@ -108,21 +111,23 @@ export const ListarTemaScreen = () => {
                     }
                     {validInfoTema &&
                       <tr>
-                        <td colSpan="4" className="text-center">Sin Información</td>
+                        <td colSpan="5" className="text-center">Sin Información</td>
                       </tr>
                     }
                   </tbody>
                 </table>
+                </div>
               </Tab.Pane>
-
               <Tab.Pane eventKey="first">
-                <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+              <br/>
+              <div className="tableTema">
+                <table className="table table-sm table-striped table-hover border rounded small" style={{cursor:"pointer"}} >
                   <thead>
                     <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Temas de Discusión</th>
-                      <th scope="col">Mensajes</th>
-                      <th scope="col">Ultimos Mensaje</th>
+                      <th scope="col" colSpan="2">Temas de Discusión</th>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Numero de comentario.</th>
+                      <th scope="col" colSpan="2">Fecha creacion</th>    
                     </tr>
                   </thead>
                   <tbody>
@@ -139,13 +144,14 @@ export const ListarTemaScreen = () => {
 
                     {validInfoTema &&
                       <tr>
-                        <td colSpan="4" className="text-center">Sin Información</td>
+                        <td colSpan="5" className="text-center">Sin Información</td>
                       </tr>
                     }
                   </tbody>
                 </table>
+                </div>
               </Tab.Pane>
-            </Tab.Content>
+            </Tab.Content>            
           </Col>
         </Row>
       </Tab.Container>

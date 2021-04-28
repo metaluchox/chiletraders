@@ -24,7 +24,20 @@ export const temasReducer = (state = initialState, action) => {
                     ...action.payload 
                 ]
             }  
-                      
+        case types.temaDelete:
+            return {
+                ...state,
+                active:null,
+                temas: state.temas.filter( tema => tema.id !== action.payload)
+            }  
+        case types.temaLogoutCleaining:
+            return {
+                ...state,
+                active:null,
+                temas: []
+            }             
+            
+
         default:
             return state;
     }

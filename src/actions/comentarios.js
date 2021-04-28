@@ -15,13 +15,15 @@ export const startAddComentario = (idTema, comentario, usuario) => {
 
         await db.collection(`tema/${idTema}/comentario`).add(newComentario);
 
+        starLoadingComentariosById(idTema);
+
     }
 }
 
 export const starLoadingComentariosById = (uid) =>{
     return async ( dispatch ) => {
         const comentarios = await loadComentariosById( uid ); 
-        return comentarios; 
+        dispatch( setComentarios ( comentarios ) );
     }
 }
 

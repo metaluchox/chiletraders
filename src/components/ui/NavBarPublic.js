@@ -19,7 +19,7 @@ export const NavBarPublic = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-mic-fill"></i> Crear </Nav.Link>
+          <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-mic-fill"></i> Crear Tema</Nav.Link>
             <hr/>            
             <Nav.Link as={Link} to="/register" ><i className="bi bi-person-plus-fill"></i> Registrarse </Nav.Link>
             <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar sesión </Nav.Link>

@@ -19,3 +19,8 @@ export const loadComentariosById = async (uid) => {
     return comentarios;
     
 }
+
+export const loadCoutComentariosById = async (uid) => {
+    const comentarioSnap = await db.collection(`tema/${uid}/comentario`).get();
+    return comentarioSnap.size;
+}

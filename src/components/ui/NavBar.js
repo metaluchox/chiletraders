@@ -3,14 +3,15 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
-import Swal from 'sweetalert2';
-import { starLoadingUsuarioById } from '../../actions/user';
+import { starLoadingUsuario, starLoadingUsuarioById } from '../../actions/user';
+import { temaLogout } from "../../actions/temas";
 
+import Swal from 'sweetalert2';
 
 
 export const NavBar = () => {
 
-  const {uid}  = useSelector( state => state.auth );
+  const auth  = useSelector( state => state.auth );
 
   const history = useHistory();
 
@@ -28,6 +29,7 @@ export const NavBar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch( startLogout() );
+        dispatch( temaLogout() );
         history.push("/login");
       }
     })
@@ -35,9 +37,16 @@ export const NavBar = () => {
   }
 
   const handleInfoUsuario = () =>{
-    dispatch(starLoadingUsuarioById(uid));
+    dispatch(starLoadingUsuarioById(auth.uid));
     setTimeout(() => {
         history.push("/miPerfil");
+    }, 500);
+  }  
+
+  const handleListUser = () =>{
+    dispatch(starLoadingUsuario());
+    setTimeout(() => {
+        history.push("/listaUsuario");
     }, 500);
   }  
   
@@ -61,9 +70,13 @@ export const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear </Nav.Link>
+            <Nav.Link as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear Tema</Nav.Link>
             <hr/>
-            <Nav.Link onClick={handleInfoUsuario}><i className="bi bi-person-check"></i> Perfil</Nav.Link>
+            <Nav.Link onClick={handleInfoUsuario}><i className="bi bi-person-check"></i> Mi Perfil</Nav.Link>
+              {
+                (auth.admin === true) && <Nav.Link onClick={handleListUser}><i className="bi bi-people"></i> Usuarios</Nav.Link>
+              }
+              
             <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
           </Nav>
         </Navbar.Collapse>

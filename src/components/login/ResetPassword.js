@@ -30,7 +30,7 @@ export const ResetPassword = () => {
 
     return (
         <>
-            <Link onClick={ recuperarPass } to="" className="text-center link" > <i class="bi bi-person-check"></i> Recuperar contraseña </Link>
+            <Link onClick={ recuperarPass } to="" className="text-center link" > <i className="bi bi-person-check"></i> Recuperar contraseña </Link>
         </>
     )
 }

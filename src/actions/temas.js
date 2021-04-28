@@ -16,17 +16,62 @@ export const startNewTema = (auth, titulo, descripcion, status, url) => {
             url:url,
             status: status,
             like:0,
+            coutComentario:0,
             comentario:[],
             dateCreation: new Date().getTime(),
             dateModify: new Date().getTime(),
         }
 
-        const docRef = await db.collection(`tema`).add(newTema);
-
-        dispatch(activeTema(docRef.id, newTema));
+        await db.collection(`tema`).add(newTema);
 
     }
 }
+
+export const startUpdateTema = (datos, id) => {
+    return async (dispatch, getState) => {
+        const temaRef = db.collection(`tema`);
+        await temaRef.doc(id).update({
+            descripcion: datos.descripcion,
+        })
+
+    }
+}
+
+export const startUpdateStatusTema = (status, id) => {
+    return async (dispatch, getState) => {
+        const temaRef = db.collection(`tema`);
+        await temaRef.doc(id).update({
+            status: status,
+        })
+
+    }
+}
+
+export const startUpdateCountComentario = (id, cantidadComentario) => {
+    return async (dispatch, getState) => {
+        const temaRef = db.collection(`tema`);
+        await temaRef.doc(id).update({
+            coutComentario: cantidadComentario + 1
+        })
+
+    }
+}
+
+export const startDeleteTema = ( id ) => {
+    return async( dispatch, getState ) => {
+        await db.doc(`tema/${id}`)
+                .delete()
+                .catch(e => console.log('error ',e));   
+
+        dispatch( deleteTema( id ) );
+    }
+}
+
+export const deleteTema = ( id ) => ({
+    type: types.temaDelete,
+    payload: id
+
+})
 
 export const activeTema = ( id, temas ) => ({
     type : types.temaActive,
@@ -78,3 +123,7 @@ export const startUploading = ( file ) => {
 
     }
 }
+
+export const temaLogout = () =>({
+    type : types.temaLogoutCleaining
+})

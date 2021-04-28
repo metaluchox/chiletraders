@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { startLogout } from '../../actions/auth';
+import { temaLogout } from '../../actions/temas';
 import { LoginConnect } from '../login/LoginConnect';
 
 export const ContentRigth = ( request ) => {
@@ -20,7 +21,8 @@ export const ContentRigth = ( request ) => {
       confirmButtonText: 'Si'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch( startLogout() );
+        dispatch( startLogout());
+        dispatch( temaLogout());
         history.push("/login");
       }
     })
@@ -35,8 +37,8 @@ export const ContentRigth = ( request ) => {
       }
       {
        ( request.isLogged===true &&  
-        <div class="d-grid gap-2">
-            <button class="btn btn-danger"  onClick={salirApp} type="button">Cerrar sesión</button>
+        <div className="d-grid gap-2">
+            <button className="btn btn-danger"  onClick={salirApp} type="button">Cerrar sesión</button>
             <br />
         </div>   
       ) 

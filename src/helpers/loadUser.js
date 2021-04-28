@@ -28,6 +28,22 @@ export const loadUser = async ( request ) => {
 
 }
 
+export const loadUsers = async () => {  
+    let user = "";
+    // try {
+    //     const userSnap = await db.collection(`${uid}/chiletraders/usuario`).get();    
+    //     userSnap.forEach(doc => {
+    //         user = doc.data();
+    //       });       
+        
+    // } catch (error) {
+    //     console.error(error)
+    // }
+
+    return user;
+
+}
+
 export const loadUserById = async ( uid ) => {  
     let user = "";
     try {
@@ -63,6 +79,7 @@ export const updateUser = async ( data, uid ) => {
                     about: data.about,
                     fono: data.fono,
                     nombre: data.fullName,
+                    admin: (data.admin==="true") ? true : false,
                 })
                 .then(r => {
                     response = "Actualizado";

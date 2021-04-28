@@ -1,1 +1,13 @@
-.pointer {cursor: pointer;}
+.pointer {
+    cursor: pointer;
+}
+.divStyle{
+        margin:auto;
+        height: auto;
+        margin: 0 auto;
+        display:block;
+        overflow:auto;
+        word-wrap: break-word;
+        white-space: unset;
+
+    }

@@ -6,9 +6,10 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import CKEditor from 'ckeditor4-react';
+import { startUpdateCountComentario } from '../../actions/temas';
 
 
-export const CrearComentarioScreen = ( {idTema, user} ) => {
+export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
 
     const dispatch = useDispatch();   
     const history = useHistory();
@@ -30,9 +31,20 @@ export const CrearComentarioScreen = ( {idTema, user} ) => {
     const enviarDatos = (e) => {
         e.preventDefault();
         const textComentarioFinal = document.getElementById('textComentario').value;
+        
         if(validarForm(textComentarioFinal)){
             dispatch(startAddComentario (idTema, textComentarioFinal, user));
-            history.push("/tema");
+            dispatch(startUpdateCountComentario(idTema, cantidadComentario));
+
+            Swal.fire({
+                title: 'Gracias por su comentario',
+                confirmButtonText: `Aceptar`,
+                allowOutsideClick: false,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    history.push("/listarTema");
+                }
+              })
         }      
     }
 

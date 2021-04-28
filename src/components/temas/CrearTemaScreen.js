@@ -28,7 +28,6 @@ export const CrearTemaScreen = () => {
  
     const handleChangeEditor = (e) =>{
         descripcion = e.editor.getData();
-
         document.getElementById('textTema').innerHTML = descripcion
     }
 

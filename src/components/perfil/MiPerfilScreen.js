@@ -16,6 +16,7 @@ export const MiPerfilScreen = () => {
 	let active = true;
 
 	let usuario = useSelector(state => state.usuario);
+	let auth = useSelector(state => state.auth);
 	
 	if(usuario.active===null){
 		window.location.href = "/";
@@ -25,7 +26,8 @@ export const MiPerfilScreen = () => {
 	const [datos, setDatos] = useState({
 		about : usuario?.active.about,
 		fullName: usuario?.active.nombre,
-		fono: usuario?.active.fono
+		fono: usuario?.active.fono,
+		admin: (usuario?.active.admin === true) ? true : false,
 	})
 
 	const handleInputChange = (e) => {
@@ -137,9 +139,28 @@ export const MiPerfilScreen = () => {
 													/>
 												</div>
 											</div>
-
-
-
+											{(auth.admin) &&
+												<>
+													<br/><br/><br/><br/>
+													<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+													<div className="form-group">
+													<div className="alert alert-warning" role="alert">		
+														<strong><label htmlFor="about">Administrador </label></strong> <small> (cuidado con esta opción)</small>														
+														<select 
+														id="admin"
+														name="admin"
+														className="form-select form-select-sm" 
+														value={datos.admin} 
+														onChange={handleInputChange} 
+														>
+															<option value={true}>Si</option>
+															<option value={false}>No</option>
+														</select>
+														</div>
+													</div>
+													</div>	
+												</>
+											}										
 										</div>
 										<br />
 										<div className="row gutters">

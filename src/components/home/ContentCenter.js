@@ -15,16 +15,16 @@ export const ContentCenter = () => {
   
     const validInfoTema = Object.entries(objTemas).length === 0;    
 
-
     return (
       <>
-        <table className="table table-sm table-striped table-hover border rounded" style={{cursor:"pointer"}} >
+      <div className="tableTema">
+        <table className="table table-sm table-striped table-hover border rounded small">
           <thead>
             <tr>
-              <th scope="col"></th>
-              <th scope="col">Temas de Discusión</th>
+              <th scope="col" colSpan="2">Temas de Discusión</th>
               <th scope="col">Usuario</th>
-              <th scope="col">Fecha creacion</th>
+              <th scope="col">Comentarios</th>
+              <th scope="col" colSpan="2">Fecha creacion</th>              
             </tr>
           </thead>
           <tbody>
@@ -42,14 +42,13 @@ export const ContentCenter = () => {
 
             {validInfoTema &&
               <tr>
-                <td colSpan="4" className="text-center">Sin Información</td>
+                <td colSpan="5" className="text-center">Sin Información</td>
               </tr>
             }
 
-
-
           </tbody>
         </table>
+        </div>
       </>
     )
 }
