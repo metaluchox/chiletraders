@@ -18,7 +18,8 @@ export const types = {
 
 
     comentarioLoad :    '[Comentario] Load Comentario',
-
+    comentarioAdd :     '[Comentario] Add Comentario',
+    comentarioDelete :  '[Comentario] Delete Comentario',
 
     usuarioLoadById :   '[Usuario] Load Usuario Id',
     monedasLoad :   '[Monedas] Load Monedas',

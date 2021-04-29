@@ -7,6 +7,7 @@ import { BreadcrumbScreen } from '../breadcrumb/BreadcrumbScreen';
 import moment from "moment";
 
 import './temas.css';
+import { ListarComentarioScreen } from '../comentarios/ListarComentarioScreen';
 
 export const TemaScreen = () => {
     
@@ -48,23 +49,18 @@ export const TemaScreen = () => {
         return modifyDate.format("YYYY-MM-DD : kk:mm:ss");
     }
 
-    const deletecomentario = (asd) => {
-        console.log(asd);
-
-    }
+    const validInfoComentario = comentarios.length === 0;
 
     return (
         <>
 
             <BreadcrumbScreen crumbs={ crumbs } selected={ selected } />
-            <div className="tableTema">
+            <div className="tableTema divStyle">
             <div className="alert alert-dark " role="alert">
                 <div className="col-md-12 text-left">
-                        <div className="divStyle">
                             <div className="badge bg-dark">{formatDate(active.dateCreation)} </div>
                             <h5 ><strong>{active.titulo}</strong> de {active.nombreUsuario} </h5>
                             <div dangerouslySetInnerHTML={createMarkup(active.descripcion)}></div>
-                        </div>
                         <br />
                 </div>
             </div>
@@ -72,32 +68,25 @@ export const TemaScreen = () => {
             <div className="container-fluid">
                 <CrearComentarioScreen idTema={active.id} user={auth} cantidadComentario={comentarios.length} />
                 <br/>
-                <div className="row">                    
+                <div className="row">                              
                         {
+                            !validInfoComentario &&
                             comentarios.map(c => (
-                                <div key={c.id}>
-                                    <div className="alert alert-secondary pointer divStyle">
-                                        <div className="badge bg-dark">{formatDate(c.dateCreation)} </div>
-                                        <h5><strong>{c.nombreUsuario}</strong> dice... </h5>
-                                        <div className="contenedor">
-                                            <p dangerouslySetInnerHTML={createMarkup(c.comentario)} />
-                                        </div>
-                                        
-                                        {
-                                            (c.idUsuario === auth.uid) &&
-                                            <div className="d-grid gap-2">
-                                                <button className="btn btn-danger btn-sm" type="button" onClick={deletecomentario}>
-                                                    <i className="bi bi-x-circle"></i> Eliminar comentario
-                                                </button>
-                                            </div>
-                                        }
-                                        
-                                    </div>
-                                    <br />
-                                    <div />
-                                </div>
+                                <ListarComentarioScreen
+                                    key={c.id}
+                                    {...c}
+                                    idTema={active.id}
+                                    user={auth}
+                                    cantidadComentario={comentarios.length}
+                                />
                             ))
+
                         }
+
+                        {validInfoComentario &&
+                            <div className="text-center"></div>
+                        }
+
                 </div>
             </div>
 

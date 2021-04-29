@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const ComentarioReducer = (state = initialState, action) => {
-    
+   
     switch (action.type) {
         
         case types.comentarioLoad:
@@ -17,6 +17,12 @@ export const ComentarioReducer = (state = initialState, action) => {
                     ...action.payload 
                 ]
             }  
+        case types.comentarioDelete:
+            return {
+                ...state,
+                active:null,
+                comentarios: state.comentarios.filter( comentario => comentario.id !== action.payload)
+            }             
                       
         default:
             return state;

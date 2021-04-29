@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 import { fileUpload } from '../../helpers/fileUpload';
 import { startAddComentario } from "../../actions/comentarios";
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import CKEditor from 'ckeditor4-react';
 import { startUpdateCountComentario } from '../../actions/temas';
@@ -12,7 +11,6 @@ import { startUpdateCountComentario } from '../../actions/temas';
 export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
 
     const dispatch = useDispatch();   
-    const history = useHistory();
     const [showComentario, setShowComentario] = useState(false);
 
     let [datos, setDatos] = useState({
@@ -24,8 +22,6 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
     const handleChangeEditor = (e) =>{
         textComentario = e.editor.getData();
         document.getElementById('textComentario').innerHTML = textComentario
-    
-
     }
 
     const enviarDatos = (e) => {
@@ -34,7 +30,8 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
         
         if(validarForm(textComentarioFinal)){
             dispatch(startAddComentario (idTema, textComentarioFinal, user));
-            dispatch(startUpdateCountComentario(idTema, cantidadComentario));
+            dispatch(startUpdateCountComentario(idTema, (cantidadComentario+1)));
+            (showComentario) ? setShowComentario(false) : setShowComentario(true) 
 
             Swal.fire({
                 title: 'Gracias por su comentario',
@@ -42,7 +39,7 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
                 allowOutsideClick: false,
               }).then((result) => {
                 if (result.isConfirmed) {
-                    history.push("/listarTema");
+                    // history.push("/listarTema");
                 }
               })
         }      
@@ -149,6 +146,21 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
         (showComentario) ? setShowComentario(false) : setShowComentario(true) 
     }
 
+
+    const copiarurl = () => {
+        const url = document.getElementById("url").value;
+
+        if (url !== "") {
+            copiarAlPortapapeles(url);
+
+            Swal.fire(
+                'Url copiada! ',
+                url,
+                'success')
+        }
+    }
+
+
     return (
       <>
 { !showComentario &&
@@ -175,25 +187,22 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
                             onChange={handlefileChange}                            
                         />                        
                     </div>
-                    <div className="col-md-12">
-                        <div className="d-grid gap-2">
-                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
-                                <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
-                            </button>
-                        </div>
-                        <br />
-                    </div>
                     
-                    <div className="col-md-12">
-                        <input
-                            type="text"
-                            id="url"
-                            name="url"
-                            value=""
-                            className="form-control"
-                            readOnly
-                        />
-                        <br />
+                        <div className="col-md-12">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="bi bi-clipboard-check">  Copiar Url</i>
+                                </span>
+                                <input
+                                    type="text"
+                                    id="url"
+                                    name="url"
+                                    value=""
+                                    className="form-control"
+                                    readOnly
+                                    onClick={copiarurl}
+                                />
+                            </div>
                     </div>                    
                     <div className="col-md-12  d-grid">
                     <textarea id="textComentario" name="textComentario" onChange={handleTextAreaChange} style={{display: 'none'}} ></textarea>
@@ -217,16 +226,21 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
 
                     </div>
 
-                    <br/> <br/> <br/> <br/> <br/>
-
-
-
+                    <div className="col-md-12">
+                    <br />
+                        <div className="d-grid gap-2">
+                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
+                                <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
+                            </button>
+                        </div>
+                    </div>   
                     <div className="col-md-12 d-grid gap-2">
-                        <button type="submit" id="btnComentar" name="btnComentar" className="btn btn-secondary btn-sm" >
+                        <br/>
+                        <button type="submit" id="btnComentar" name="btnComentar" className="btn btn-primary btn-sm" >
                             <i className="bi bi-chat-right-text"></i> Comentar
-                        </button>
-                        <button type="button" className="btn btn-danger btn-sm" onClick={showDivComentario}>
-                                <i className="bi bi-x-circle"></i> Cerrar
+                        </button>                     
+                        <button type="button" className="btn btn-outline-secondary btn-sm" onClick={showDivComentario}>
+                                <i className="bi bi-back"></i> Cerrar
                         </button>
                     </div>
 

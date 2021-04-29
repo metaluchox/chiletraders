@@ -51,7 +51,7 @@ export const startUpdateCountComentario = (id, cantidadComentario) => {
     return async (dispatch, getState) => {
         const temaRef = db.collection(`tema`);
         await temaRef.doc(id).update({
-            coutComentario: cantidadComentario + 1
+            coutComentario: cantidadComentario
         })
 
     }

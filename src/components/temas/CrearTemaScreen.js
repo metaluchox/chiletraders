@@ -159,6 +159,18 @@ export const CrearTemaScreen = () => {
         document.querySelector('#fileSelector').click();
     }
 
+    const copiarurl = () => {
+        const url = document.getElementById("url").value;
+
+        if (url !== "") {
+            copiarAlPortapapeles(url);
+
+            Swal.fire(
+                'Url copiada! ',
+                url,
+                'success')
+        }
+    }
 
     const [crumbs] = useState(['Home', 'Listar', 'Crear']);
     const selected = crumb => {
@@ -205,15 +217,12 @@ export const CrearTemaScreen = () => {
                                         />
                                         <br />
                                     </div>
+
                                     <div className="col-md-12">
-                                        <div className="d-grid gap-2">
-                                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
-                                                <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
-                                            </button>
-                                        </div>
-                                        <br />
-                                    </div>
-                                    <div className="col-md-12">
+                                        <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="bi bi-clipboard-check">  Copiar Url</i>
+                                            </span>
                                             <input
                                                 type="text"
                                                 id="url"
@@ -221,8 +230,9 @@ export const CrearTemaScreen = () => {
                                                 value=""
                                                 className="form-control"
                                                 readOnly
+                                                onClick={copiarurl}
                                             />
-                                            <br />
+                                        </div>
                                     </div>
 
                                     <div className="col-md-12">
@@ -245,20 +255,28 @@ export const CrearTemaScreen = () => {
                                     />
                                     <br />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-12">
+                                        <div className="d-grid gap-2">
+                                            <button type="button" onClick={cargaClick} className="btn btn-outline-success btn-sm">
+                                                <i className="bi bi-cloud-arrow-up"></i> Cargar Imagen
+                                            </button>
+                                        </div>
+                                        <br />
+                                    </div>                                    
+                                    <div className="col-md-12">
 
                                         <div className="d-grid gap-2">
-                                            <button type="button" className="btn btn-outline-danger"
+                                            <button type="button" className="btn btn-outline-primary btn-sm"
                                                 onClick={saveTema}
                                                 disabled={btnSave}>
                                                 <i className="bi bi-life-preserver"></i> Guardar</button>
                                         </div>
                                         <br />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-12">
                                         <div className="d-grid gap-2">
-                                            <Link className="btn btn-outline-secondary" to="/listarTema" >
-                                                <i className="bi bi-arrow-return-left"></i> Volver
+                                            <Link className="btn btn-outline-secondary btn-sm" to="/listarTema" >
+                                                    <i className="bi bi-back"></i> Cerrar
                                             </Link>
                                         </div>
                                     </div>

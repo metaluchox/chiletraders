@@ -15,10 +15,26 @@ export const startAddComentario = (idTema, comentario, usuario) => {
 
         await db.collection(`tema/${idTema}/comentario`).add(newComentario);
 
-        starLoadingComentariosById(idTema);
+        dispatch( starLoadingComentariosById( idTema ));
 
     }
 }
+
+export const startDeleteComentario = ( idTema, idComentario ) => {
+    return async( dispatch, getState ) => {
+        await db.doc(`tema/${idTema}/comentario/${idComentario}`)
+                .delete()
+                .catch(e => console.log('error ',e));   
+
+                dispatch( deleteComentario( idComentario ) );
+    }
+}
+
+export const deleteComentario = ( id ) => ({
+    type: types.comentarioDelete,
+    payload: id
+
+})
 
 export const starLoadingComentariosById = (uid) =>{
     return async ( dispatch ) => {
