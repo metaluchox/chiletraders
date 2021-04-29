@@ -77,7 +77,6 @@ export const AppRouter = () => {
 
     return (
       <Router>
-          <div className="container">
           <Switch>
             <PublicRoute 
             exact path="/login" 
@@ -104,7 +103,6 @@ export const AppRouter = () => {
               component={HomeRouter} 
               isAuthenticated={isLoggedIn} />
           </Switch>
-          </div>
       </Router>
     )
 }

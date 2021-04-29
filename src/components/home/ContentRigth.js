@@ -31,20 +31,19 @@ export const ContentRigth = ( request ) => {
 
   return (
     <>
-      <div className="col">
       {
         ( request.isLogged!==true &&  <LoginConnect /> )        
       }
       {
        ( request.isLogged===true &&  
         <div className="d-grid gap-2">
-            <button className="btn btn-danger"  onClick={salirApp} type="button">Cerrar sesión</button>
+            <button className="btn btn-danger"  onClick={salirApp} type="button"><i className="bi bi-power"> Cerrar sesión</i></button>
             <br />
         </div>   
       ) 
       }
   
-      </div>
+
       <div className="col">
         <div className="card mb-4 rounded-3 shadow-sm">
           <img alt="Coca cola"

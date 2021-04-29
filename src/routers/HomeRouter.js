@@ -17,7 +17,6 @@ export const HomeRouter = () => {
     return (
         <>
         <NavBar />
-        <br />
                     <Switch>
                         <Route exact path="/home" component={HomeScreen} />
                         <Route exact path="/listarTema" component={ListarTemaScreen} />
@@ -27,7 +26,6 @@ export const HomeRouter = () => {
                         <Route exact path="/monedaDetalle" component={MonedaDetailScreen} />
                         <Redirect to="/home" />
                     </Switch>  
-        <br />        
         <Footer />
         </>
     )

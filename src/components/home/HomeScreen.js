@@ -7,31 +7,25 @@ import { starLoadingTemas } from '../../actions/temas';
 
 export const HomeScreen = () => {
 	const dispatch =useDispatch();
-
     const {isLogged}  = useSelector( state => state.auth );    
-    
-    // const monedaSelect = ["uf","ivp","dolar","euro","utm","bitcoin", "dolar_intercambio","imacec","tpm", "libra_cobre", "tasa_desempleo"];
 
     dispatch( starLoadingTemas(20));
-    // dispatch( starLoadingMonedas(monedaSelect))
 
     return (
         <>
-            <div className="row mb-3">
-                <div className="col-sm-3 themed-grid-col">
-                    <ContentLeft isLogged={isLogged} />
-                </div>
-
-                <div className="col-sm-6 themed-grid-col">
-                    <ContentCenter />
-                </div>
-
-                <div className="col-sm-3 themed-grid-col">
-
-                    <ContentRigth isLogged={isLogged} />
-
-                </div>
+        <div class="p-4 bg-light">
+        <div className="row mb-3">
+            <div className="col-sm-2">
+                <ContentLeft isLogged={isLogged} />
             </div>
+            <div className="col-sm-8">
+                <ContentCenter />
+            </div>
+            <div className="col-sm-2">
+                <ContentRigth isLogged={isLogged} />
+            </div>
+        </div>
+        </div>
     </>
     )
 }

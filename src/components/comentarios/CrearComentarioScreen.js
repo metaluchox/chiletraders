@@ -189,9 +189,9 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
                     </div>
                     
                         <div className="col-md-12">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="bi bi-clipboard-check">  Copiar Url</i>
+                            <div className="input-group input-group-sm mb-3">
+                                <span className="input-group-text" id="basic-addon1">
+                                    <i className="bi bi-clipboard-check">  Copiar Url</i>
                                 </span>
                                 <input
                                     type="text"

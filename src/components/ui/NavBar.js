@@ -1,9 +1,8 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
-import { starLoadingUsuario, starLoadingUsuarioById } from '../../actions/user';
+import { starLoadingUsuarioById } from '../../actions/user';
 import { temaLogout } from "../../actions/temas";
 
 import Swal from 'sweetalert2';
@@ -43,48 +42,34 @@ export const NavBar = () => {
     }, 500);
   }  
 
-  const handleListUser = () =>{
-    dispatch(starLoadingUsuario());
-    setTimeout(() => {
-        history.push("/listaUsuario");
-    }, 500);
+  const crearTema = () =>{
+    history.push("/crearTema");
   }  
-  
+  const home = () =>{
+    history.push("/");
+  } 
+
   return (
     <>
-
-<div className="container">
-  <div className="row">
-
-       <div className="col-lg-12">
-         
-      <Navbar className="navbar-custom_ct fixed-top text-center" variant="dark" expand="sm">
-        <Navbar.Brand as={Link} to="/">
-
-         <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
-          width="270px"
-          alt="Chile Traders" 
-            />
-        </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/crearTema" ><i className="bi bi-mic-fill"></i> Crear Tema</Nav.Link>
-            <hr/>
-            <Nav.Link onClick={handleInfoUsuario}><i className="bi bi-person-check"></i> Mi Perfil</Nav.Link>
-              {
-                (auth.admin === true) && <Nav.Link onClick={handleListUser}><i className="bi bi-people"></i> Usuarios</Nav.Link>
-              }
-              
-            <Nav.Link  onClick={salirApp}><i className="bi bi-power"> Cerrar sesión</i> </Nav.Link> 
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-      </div>
-      </div>
-      </div>
-
+      <header>
+        <nav className="navbar navbar-expand-md navbar-dark fixed-top navbar-custom_ct">
+          <div className="container-fluid">
+            <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png" className="navbar_image" alt="Chile Traders" onClick={home} />
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarCollapse">
+              <ul className="navbar-nav me-auto mb-2 mb-md-0"></ul>
+              <form className="d-flex">
+                <button className="btn btn-light" type="button" onClick={crearTema} style={{margin:"4px"}}><i className="bi bi-plus"></i> Crear Tema </button>
+                <button className="btn btn-primary" type="button" onClick={handleInfoUsuario}  style={{margin:"4px"}}><i className="bi bi-person-check" ></i> Mi Perfil </button>
+                <button className="btn btn-danger" type="button" onClick={salirApp}  style={{margin:"4px"}}><i className="bi bi-power"> Cerrar sesión</i></button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div className="mt-5"></div>
     </>
   )
 }

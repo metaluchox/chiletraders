@@ -1,36 +1,41 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export const NavBarPublic = () => {
-  
-  return (
-    <div className="col-lg-12">
-    
-      <Navbar className="navbar-custom_ct fixed-top" variant="dark" expand="lg">
-        <Navbar.Brand as={Link} to="/">
+  const history = useHistory();
 
-         <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png"
-          width="270px"
-          alt="Chile Traders" 
-          />
-        </Navbar.Brand>
+  const loginConnect = () =>{
+    history.push("/loginConnect");
+  }  
+  const register = () =>{
+    history.push("/register");
+  }  
+  const home = () =>{
+    history.push("/");
+  } 
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-mic-fill"></i> Crear Tema</Nav.Link>
-            <hr/>            
-            <Nav.Link as={Link} to="/register" ><i className="bi bi-person-plus-fill"></i> Registrarse </Nav.Link>
-            <Nav.Link as={Link} to="/loginConnect" ><i className="bi bi-person-circle"></i> Iniciar sesión </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-        
-
-      </Navbar>
-
-    </div>
-
+  return (  
+    <>  
+    <header>
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top navbar-custom_ct">
+        <div className="container-fluid">
+          <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png" className="navbar_image" alt="Chile Traders"  onClick={home} />
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarCollapse">
+            <ul className="navbar-nav me-auto mb-2 mb-md-0"></ul>
+            <form className="d-flex">
+              <button className="btn btn-light" type="button" onClick={loginConnect} style={{margin:"4px"}}><i className="bi bi-plus"></i> Crear Tema </button>
+              <button className="btn btn-primary" type="button" onClick={register} style={{margin:"4px"}}><i className="bi bi-person-plus-fill"></i> Registrarse  </button>
+              <button className="btn btn-info" type="button" onClick={loginConnect} style={{margin:"4px"}}><i className="bi bi-person-circle"></i> Ingresar </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div className="mt-5"></div>
+    </>
   )
 }
 
