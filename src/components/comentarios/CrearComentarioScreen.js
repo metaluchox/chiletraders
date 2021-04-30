@@ -165,8 +165,8 @@ export const CrearComentarioScreen = ( {idTema, user, cantidadComentario} ) => {
       <>
 { !showComentario &&
 <div className="row">
-                <ButtonGroup size="sm">
-                    <Button variant="secondary" onClick={showDivComentario}><i className="bi bi-chat-right-text"> Comentar {showComentario}</i></Button>
+                <ButtonGroup size="lg">
+                    <Button variant="primary" onClick={showDivComentario}><i className="bi bi-chat-right-text"> Comentar</i></Button>
                 </ButtonGroup>
 </div>
 }

@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
 import { starLoadingUsuarioById } from '../../actions/user';
 import { temaLogout } from "../../actions/temas";
-
 import Swal from 'sweetalert2';
+import './NavBar.css';
 
 
 export const NavBar = () => {
@@ -54,7 +54,7 @@ export const NavBar = () => {
       <header>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top navbar-custom_ct">
           <div className="container-fluid">
-            <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png" className="navbar_image" alt="Chile Traders" onClick={home} />
+            <img id="logo" src="../../assets/image/chiletraderslogosinfondo.png" className="navbar_image pointer" alt="Chile Traders" onClick={home} />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +69,7 @@ export const NavBar = () => {
           </div>
         </nav>
       </header>
-      <div className="mt-5"></div>
+      <div className="mt-4"></div>
     </>
   )
 }

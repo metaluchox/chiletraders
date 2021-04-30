@@ -91,8 +91,9 @@ export const TemaScreen = () => {
             </div>
 
             <div className="d-grid gap-2">
-                <Link className="btn btn-outline-secondary" to="/listarTema" >Volver</Link>
-            </div>
+                <Link className="btn btn-outline-secondary  btn-sm" to="/listarTema" ><i className="bi bi-back"></i> Cerrar</Link>
+                <br/><br/>
+            </div>            
             </div>
         </>
     )

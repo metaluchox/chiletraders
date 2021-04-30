@@ -278,20 +278,16 @@ export const CrearTemaScreen = () => {
                                             <Link className="btn btn-outline-secondary btn-sm" to="/listarTema" >
                                                     <i className="bi bi-back"></i> Cerrar
                                             </Link>
+                                           
                                         </div>
                                     </div>
-
+                                    
                                 </div>
                             </div>
 
-
-
-
                         </div>
                         <div>
-
                             <br />
-
                         </div>
                     </form>
 

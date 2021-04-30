@@ -42,7 +42,6 @@ export const ContentRigth = ( request ) => {
         </div>   
       ) 
       }
-  
 
       <div className="col">
         <div className="card mb-4 rounded-3 shadow-sm">

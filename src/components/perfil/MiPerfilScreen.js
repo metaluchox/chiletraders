@@ -169,6 +169,7 @@ export const MiPerfilScreen = () => {
 													<button type="submit" id="submit" name="submit" className="btn btn-outline-danger  btn-sm">Actualizar</button>
 													<Link type="button" className="btn btn-outline-secondary  btn-sm" to={`/home`}>Cancel</Link>
 												</div>
+												<br />
 											</div>
 										</div>
 									</div>
@@ -177,11 +178,7 @@ export const MiPerfilScreen = () => {
 						</div>
 					</div>
 					</form>
-
 			}
-
-
-
 		</>
 	)
 }
