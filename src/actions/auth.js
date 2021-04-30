@@ -13,6 +13,16 @@ export const startLoginEmailPassword = (email, password) => {
                 firebase.auth().signInWithEmailAndPassword(email, password)
                         .then( async ({ user }) => {
 
+                                Swal.fire({
+                                        title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+                                        text: 'Espere un momento.',
+                                        showConfirmButton: false,
+                                        allowOutsideClick: false,
+                                            willOpen : () => {
+                                                Swal.showLoading();
+                                            }
+                                      });       
+
                         // Create a reference to the cities collection
                         const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
                         // Create a query against the collection
@@ -38,6 +48,8 @@ export const startLoginEmailPassword = (email, password) => {
                                         }
                                       })
                                       
+                                      Swal.close();
+
                                       Toast.fire({
                                         icon: 'success',
                                         title: 'Signed in successfully '+user.displayName
@@ -59,12 +71,22 @@ export const startGoogleLogin = () => {
 
                 firebase.auth().signInWithPopup(googleAuthProvide)
                         .then( async ({ user }) => {
-                                 
+                                
+                                Swal.fire({
+                                        title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+                                        text: 'Espere un momento.',
+                                        showConfirmButton: false,
+                                        allowOutsideClick: false,
+                                            willOpen : () => {
+                                                Swal.showLoading();
+                                            }
+                                      });
+
                                 // Create a reference to the cities collection
                                 const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
                                 // Create a query against the collection
-                                
                                 const queryRef = await userRef.where('email', '==', user.email).get();
+
                                 if (queryRef.empty) {
                                   
                                         const usuario = {
@@ -90,6 +112,8 @@ export const startGoogleLogin = () => {
                                 }         
                 
                                 dispatch( login (user.uid, user.displayName, isAdmin) )
+
+                                Swal.close();
 
                                 const Toast = Swal.mixin({
                                         toast: true,

@@ -4,3 +4,9 @@
         height: auto;
     }    
   }
+
+
+  .navbar_image{
+    max-width: 40%;
+    height: auto;
+}

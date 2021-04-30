@@ -35,12 +35,22 @@ export const NavBar = () => {
 
   }
 
-  const handleInfoUsuario = () =>{
-    dispatch(starLoadingUsuarioById(auth.uid));
-    setTimeout(() => {
-        history.push("/miPerfil");
-    }, 500);
-  }  
+  const handleInfoUsuario = () => {
+    const miPerfil = dispatch(starLoadingUsuarioById(auth.uid));
+    Swal.fire({
+      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      text: 'Espere un momento.',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+          willOpen : () => {
+              Swal.showLoading();
+          }
+    });
+    miPerfil.then(r => {
+      Swal.close();
+      history.push("/miPerfil");
+    })
+  }
 
   const crearTema = () =>{
     history.push("/crearTema");

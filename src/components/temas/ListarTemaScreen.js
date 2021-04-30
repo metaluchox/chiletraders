@@ -20,29 +20,35 @@ export const ListarTemaScreen = () => {
   }
 
   const allTab = () =>{
-    dispatch( starLoadingTemas(null));
-
+    const response = dispatch( starLoadingTemas(null));
     Swal.fire({
-      title: '<div class="spinner-grow text-primary" role="status"> <span class="visually-hidden"></span></div>',  
-      footer: 'Loading...',    
+      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      text: 'Espere un momento.',
       showConfirmButton: false,
-      timer: 1000,
       allowOutsideClick: false,
+          willOpen : () => {
+              Swal.showLoading();
+          }
+    });
+    response.then(r=>{
+        Swal.close();
     })
-
   }
 
   const firstTab = () =>{
-    dispatch( starLoadingTemasById( uid ));
-
+    const response = dispatch( starLoadingTemasById( uid ));
     Swal.fire({
-      title: '<div class="spinner-grow text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>',    
-      footer: 'Loading...',    
+      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      text: 'Espere un momento.',
       showConfirmButton: false,
-      timer: 1000,
       allowOutsideClick: false,
+          willOpen : () => {
+              Swal.showLoading();
+          }
+    });
+    response.then(r=>{
+        Swal.close();
     })
-
 
   }
 
@@ -67,91 +73,93 @@ export const ListarTemaScreen = () => {
   return (
     <>
       <BreadcrumbScreen crumbs={crumbs} selected={selected} />
-      {/* defaultActiveKey="first" */}
       <Tab.Container id="left-tabs-example" >
         <Row>
           <Col sm={2}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
-                <Nav.Link eventKey="all" className="text-center" onClick={allTab}><i className="bi bi-chat-right-quote"></i> Todos </Nav.Link>
+                <Nav.Link eventKey="all" size="sm" className="text-center" onClick={allTab}><i className="bi bi-chat-right-quote"></i> Todos </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="first" className="text-center" onClick={firstTab}><i className="bi bi-chat-right-quote"></i> Creados por ti </Nav.Link>
+                <Nav.Link eventKey="first" size="sm" className="text-center" onClick={firstTab}><i className="bi bi-chat-right-quote"></i> Creados por ti </Nav.Link>
               </Nav.Item>
-              <br />
-              <button id="btnCrearTema" className="btn btn-outline-danger" onClick={crearTema} >Crear</button>
-              <br />
-              <Link className="btn btn-outline-secondary" to="/" >Volver</Link>
+              <hr/>
+              <div className="d-grid gap-2">
+                <button id="btnCrearTema" className="btn btn-danger btn-sm" onClick={crearTema} ><i className="bi bi-plus"></i> Crear</button>
+                <Link className="btn btn-outline-secondary btn-sm" to="/" ><i className="bi bi-back"></i> Cerrar</Link>
+              </div>
             </Nav>
           </Col>
           <Col sm={9}>
-          
+
             <Tab.Content>
               <Tab.Pane eventKey="all">
-                <br/>
-              <div className="tableTema">
-                <table className="table table-sm table-striped table-hover border rounded small" style={{cursor:"pointer"}} >
-                  <thead>
-                    <tr>
-                      <th scope="col" colSpan="2">Temas de Discusión</th>
-                      <th scope="col">Usuario</th>
-                      <th scope="col">Comentarios</th>
-                      <th scope="col" colSpan="2">Fecha creacion</th>      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      !validInfoTema &&
-                      objTemas.map(t => (
-                        <TemasEntry
-                          key={t.id}
-                          {...t}
-                        />
-                      ))
-                    }
-                    {validInfoTema &&
+                <br />
+                <div className="tableTema">
+                  <table className="table table-sm table-striped table-hover border rounded small" style={{ cursor: "pointer" }} >
+                    <thead>
                       <tr>
-                        <td colSpan="5" className="text-center">Sin Información</td>
+                        <th scope="col" colSpan="2">Temas de Discusión</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Comentarios</th>
+                        <th scope="col" colSpan="2">Fecha creacion</th>
                       </tr>
-                    }
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {
+                        !validInfoTema &&
+                        objTemas.map(t => (
+                          <TemasEntry
+                            key={t.id}
+                            {...t}
+                          />
+                        ))
+                      }
+                      {validInfoTema &&
+                        <tr>
+                          <td colSpan="5" className="text-center">Sin Información</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br />
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="first">
-              <br/>
-              <div className="tableTema">
-                <table className="table table-sm table-striped table-hover border rounded small" style={{cursor:"pointer"}} >
-                  <thead>
-                    <tr>
-                      <th scope="col" colSpan="2">Temas de Discusión</th>
-                      <th scope="col">Usuario</th>
-                      <th scope="col">Numero de comentario.</th>
-                      <th scope="col" colSpan="2">Fecha creacion</th>    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      !validInfoTema &&
-                      objTemas.map(t => (
-                        <TemasEntry
-                          key={t.id}
-                          {...t}
-                        />
-                      ))
-
-                    }
-
-                    {validInfoTema &&
+                <br />
+                <div className="tableTema">
+                  <table className="table table-sm table-striped table-hover border rounded small" style={{ cursor: "pointer" }} >
+                    <thead>
                       <tr>
-                        <td colSpan="5" className="text-center">Sin Información</td>
+                        <th scope="col" colSpan="2">Temas de Discusión</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Numero de comentario.</th>
+                        <th scope="col" colSpan="2">Fecha creacion</th>
                       </tr>
-                    }
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {
+                        !validInfoTema &&
+                        objTemas.map(t => (
+                          <TemasEntry
+                            key={t.id}
+                            {...t}
+                          />
+                        ))
+
+                      }
+
+                      {validInfoTema &&
+                        <tr>
+                          <td colSpan="5" className="text-center">Sin Información</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br />
                 </div>
               </Tab.Pane>
-            </Tab.Content>            
+            </Tab.Content>
           </Col>
         </Row>
       </Tab.Container>

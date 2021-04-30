@@ -50,22 +50,31 @@ export const AppRouter = () => {
 
       return(
         <>
-          <div className="col-auto p-5 text-center bg-primary row justify-content-center align-items-center" role="alert">
-            <img id="logo"
+
+<div className=" loadingDivCt row text-center">
+  <div className="col-md-12">
+    <div className="thumbnail">
+      <a href="/w3images/lights.jpg">
+      <img id="logo"
               src="../../assets/image/chiletraderslogosinfondo.png"
-              width="40%"
-              alt="Chile Traders"
-            />
-            <img id="logo"
-              src="../../assets/image/Comp_14.gif"
               width="100%"
               alt="Chile Traders"
+              
             />
-            <h4 className="text-light">
-              Loading...
-            </h4>            
-          </div>
-        </>
+        <div className="caption">
+        <img id="logo"
+              src="../../assets/image/Comp_14.gif"
+              width="30%"
+              alt="Chile Traders"
+            />         
+        </div>
+      </a>
+    </div>
+    <h1 className="text-light">Cargando ...</h1>
+  </div>
+</div>   
+
+</>
       )
 
   }

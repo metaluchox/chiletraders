@@ -6,9 +6,7 @@ const initialState = {
 }
 
 export const UsuarioReducer = (state = initialState, action) => {
-    
-    switch (action.type) {
-        
+    switch (action.type) {        
         case types.usuarioLoadById:
             return {
                 ...state,

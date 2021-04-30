@@ -53,10 +53,10 @@ export const Footer = () => {
     <div className="mt-5"></div>
       <footer className="pt-2 my-md-2 pt-md-2 border-top text-white-50 footer-custom_ct fixed-bottom">
     <div className="row">
-      <div className="col-6 col-md">
+      <div className="col-6 col-md text-center">
         Sobre <br/> Chiletraders
       </div>
-      <div className="col-6 col-md">
+      <div className="col-6 col-md text-center">
         Redes social
         <ul className="list-unstyled text-small" style={{cursor:"pointer"}} >
         <li className="mb-1">

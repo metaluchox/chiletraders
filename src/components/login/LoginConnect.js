@@ -70,7 +70,7 @@ export const LoginConnect = () => {
                             <input type="button" className="btn btn-primary" 
                             onClick={ingresar}
                             disabled={ loading }
-                            value="Iniciar sesión" />
+                            value={"Iniciar sesión"} />
                             <Link onClick={ ingresarByGoogle } className="btn btn-danger" to="">                                
                                 <i className="bi bi-google text-center"></i>  Ingresa con <b>Google</b>
                             </Link>

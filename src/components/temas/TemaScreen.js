@@ -18,7 +18,7 @@ export const TemaScreen = () => {
     const [crumbs] = useState(['Home', 'Listar', 'tema']);
 
     if(active===null){
-        window.location.href = "/listarTema";
+        history.push("/listarTema");
     }
   
     if(active===null){

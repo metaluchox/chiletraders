@@ -139,10 +139,20 @@ export const TemasEntry = ({ id, idUsuario, coutComentario, nombreUsuario, titul
     }
 
     const handleVerUsuario = () => {
-        dispatch(starLoadingUsuarioById(idUsuario));
-        setTimeout(() => {
+        const usuarioSelect = dispatch(starLoadingUsuarioById(idUsuario));
+        Swal.fire({
+            title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+            text: 'Espere un momento.',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+                willOpen : () => {
+                    Swal.showLoading();
+                }
+          });
+        usuarioSelect.then(r => {
+            Swal.close();
             history.push("/miPerfil");
-        }, 500);
+        })        
 
     }    
     

@@ -84,12 +84,9 @@ export const CrearTemaScreen = () => {
     const handlefileChange = async (e) => {
         const file = e.target.files[0];
 
-
         if (file) {
 
-
               Swal.fire({
-
                 title: 'Cargando...',
                 text: 'Espere un momento.',
                 showConfirmButton: false,

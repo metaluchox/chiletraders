@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { authReducer } from '../auth/authReducer';
 import { ComentarioReducer } from '../auth/ComentarioReducer';
-import { monedasReducer } from '../auth/MonedasReducer';
 import { temasReducer } from '../auth/TemaReducer';
 import { uiReducer } from '../auth/uiReducer';
 import { UsuarioReducer } from '../auth/UsuarioReducer';
@@ -15,8 +14,7 @@ const reducers = combineReducers({
     ui: uiReducer,
     tema: temasReducer,
     comentario: ComentarioReducer,
-    usuario: UsuarioReducer,
-    moneda: monedasReducer,
+    usuario: UsuarioReducer,    
 })
 
 
