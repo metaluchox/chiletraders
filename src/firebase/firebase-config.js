@@ -3,12 +3,12 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyDFODUtVN6Lkf_X1D_eHO2axYB1iaVezIA",
-    authDomain: "chiletraders-e487d.firebaseapp.com",
-    projectId: "chiletraders-e487d",
-    storageBucket: "chiletraders-e487d.appspot.com",
-    messagingSenderId: "881711685611",
-    appId: "1:881711685611:web:ebe7405aee3a05996e83ae"
+    apiKey: "AIzaSyB2Mznkm2KZWyfvvgzcQ4Qyar6TbvXxLQw",
+    authDomain: "gafa-peugeot.firebaseapp.com",
+    projectId: "gafa-peugeot",
+    storageBucket: "gafa-peugeot.appspot.com",
+    messagingSenderId: "609781926073",
+    appId: "1:609781926073:web:1f86aadc6a53d2f61c3368"
 };
 
 // Initialize Firebase
