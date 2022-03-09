@@ -13,7 +13,6 @@ export const RegisterScreen = () => {
     const { msgError} = useSelector( state => state.ui );
   
     const [ formValues, handleInputChange ] = useForm({
-        
          nombre: '',
          email:'',
          password: '',
@@ -30,14 +29,6 @@ export const RegisterScreen = () => {
         if(isFormValid()){
             dispatch(startRegisterEmailPassword(email, password, nombre))
         };
-
-            
-
-        // const lastPath = localStorage.getItem('lastPath') || '/';
-        // dispatch( startLoginEmailPassword ( email, password ) );
-
-        // history.replace(lastPath);
-
     }
 
 

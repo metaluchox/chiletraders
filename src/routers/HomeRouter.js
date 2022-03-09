@@ -4,7 +4,7 @@ import { HomeScreen } from '../components/home/HomeScreen'
 import { ListarTemaScreen } from '../components/temas/ListarTemaScreen'
 import { CrearTemaScreen } from '../components/temas/CrearTemaScreen'
 import { MiPerfilScreen } from '../components/perfil/MiPerfilScreen'
-
+import { AddOrdenScreen } from '../components/ordenes/AddOrdenScreen'
 import { Footer } from '../components/ui/Footer'
 import { NavBar } from '../components/ui/NavBar'
 import { TemaScreen } from '../components/temas/TemaScreen'
@@ -19,6 +19,7 @@ export const HomeRouter = () => {
         <NavBar />
                     <Switch>
                         <Route exact path="/home" component={HomeScreen} />
+                        <Route exact path="/addOrden" component={AddOrdenScreen} />
                         <Route exact path="/listarTema" component={ListarTemaScreen} />
                         <Route exact path="/crearTema" component={CrearTemaScreen} />
                         <Route exact path="/miPerfil" component={MiPerfilScreen} />

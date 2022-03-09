@@ -4,7 +4,7 @@ import { db } from "../firebase/firebase-config";
 export const loadUser = async ( request ) => {
     const user = [];
     try {
-        const userSnap = await db.collection(`${request.id}/chiletraders/usuario`).get();    
+        const userSnap = await db.collection(`gafa/usuario/${request.id}`).get();    
 
         userSnap.forEach(snapDoc =>{
             if (snapDoc.exists) {
@@ -31,7 +31,7 @@ export const loadUser = async ( request ) => {
 export const loadUserById = async ( uid ) => {  
     let user = "";
     try {
-        const userSnap = await db.collection(`${uid}/chiletraders/usuario`).get();    
+        const userSnap = await db.collection(`gafa/usuario/${uid}`).get();    
         userSnap.forEach(doc => {
             user = doc.data();
           });       
@@ -48,7 +48,7 @@ export const updateUser = async ( data, uid ) => {
     try {
 
         let idDoc = "";
-        const userRef = db.collection(`${uid}/chiletraders/usuario`);
+        const userRef = db.collection(`gafa/usuario/${uid}`);
         const doc = await  userRef.get();
         let response = "";
 

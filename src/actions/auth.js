@@ -24,7 +24,7 @@ export const startLoginEmailPassword = (email, password) => {
                                       });       
 
                         // Create a reference to the cities collection
-                        const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
+                        const userRef = db.collection(`gafa/usuario/${user.uid}`);
                         // Create a query against the collection
                         const queryRef = await userRef.where('email', '==', user.email).get();
 
@@ -83,7 +83,7 @@ export const startGoogleLogin = () => {
                                       });
 
                                 // Create a reference to the cities collection
-                                const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
+                                const userRef = db.collection(`gafa/usuario/${user.uid}`);
                                 // Create a query against the collection
                                 const queryRef = await userRef.where('email', '==', user.email).get();
 
@@ -102,8 +102,8 @@ export const startGoogleLogin = () => {
                                                 dateModify: new Date().getTime(),
                                                                                 
                                         }
-
-                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);         
+                                        db.collection(`gafa/usuario/${user.uid}`).add(usuario);                                        
+       
 
                                 }else{
                                         queryRef.forEach(doc => {
@@ -149,7 +149,7 @@ export const startRegisterEmailPassword = (email, password, name) => {
 
 
                                 // Create a reference to the cities collection
-                                const userRef = db.collection(`${user.uid}/chiletraders/usuario`);
+                                const userRef = db.collection(`gafa/usuario/${user.uid}`);
                                 // Create a query against the collection
 
                                 const queryRef = await userRef.where('email', '==', user.email).get();
@@ -169,7 +169,7 @@ export const startRegisterEmailPassword = (email, password, name) => {
                                                                                 
                                         }
 
-                                        db.collection(`${user.uid}/chiletraders/usuario`).add(usuario);                                        
+                                        db.collection(`gafa/usuario/${user.uid}`).add(usuario);                                        
 
 
                                 }
