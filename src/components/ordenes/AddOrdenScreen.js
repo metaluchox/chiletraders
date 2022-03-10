@@ -1,11 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 export const AddOrdenScreen = () => {
     const history = useHistory();
 
-    const {isLogged}  = useSelector( state => state.auth );    
+    // const {isLogged}  = useSelector( state => state.auth );    
 
     const volver = () =>{
         history.push("/home");

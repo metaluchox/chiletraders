@@ -22,7 +22,7 @@ export const ListarTemaScreen = () => {
   const allTab = () =>{
     const response = dispatch( starLoadingTemas(null));
     Swal.fire({
-      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      title: '<div className="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
       text: 'Espere un momento.',
       showConfirmButton: false,
       allowOutsideClick: false,
@@ -38,7 +38,7 @@ export const ListarTemaScreen = () => {
   const firstTab = () =>{
     const response = dispatch( starLoadingTemasById( uid ));
     Swal.fire({
-      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      title: '<div className="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
       text: 'Espere un momento.',
       showConfirmButton: false,
       allowOutsideClick: false,

@@ -141,7 +141,7 @@ export const TemasEntry = ({ id, idUsuario, coutComentario, nombreUsuario, titul
     const handleVerUsuario = () => {
         const usuarioSelect = dispatch(starLoadingUsuarioById(idUsuario));
         Swal.fire({
-            title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+            title: '<div className="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
             text: 'Espere un momento.',
             showConfirmButton: false,
             allowOutsideClick: false,
@@ -166,7 +166,7 @@ export const TemasEntry = ({ id, idUsuario, coutComentario, nombreUsuario, titul
     const handleMensajeTema = () =>{
         Swal.fire(
             'Tema Deshabilitado',
-            'El administrador ha deshabilitado el tema <i class="bi bi-emoji-neutral"></i>',
+            'El administrador ha deshabilitado el tema <i className="bi bi-emoji-neutral"></i>',
             'warning',
           )
     }

@@ -36,9 +36,7 @@ export const LoginConnect = () => {
                     <form onSubmit={ ingresar } method="post">
                         <div className="modal-header">
                             <Link to="/" >
-                            <img className="register__image" id="logo" src="../../assets/image/chiletraderslogoStandar.png"
-                                width="270px"
-                                alt="Chile Traders" />
+                                <img src="../../assets/image/banner_peugeot.png" alt="Gafa Peugeot"  width="100%"></img>
                             </Link>
                         </div>
                         <div className="modal-body">

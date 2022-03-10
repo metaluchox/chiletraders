@@ -40,7 +40,7 @@ export const NavBar = () => {
   const handleInfoUsuario = () => {
     const miPerfil = dispatch(starLoadingUsuarioById(auth.uid));
     Swal.fire({
-      title: '<div class="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
+      title: '<div className="text-center" role="status"> <img className="mb-2 bg-primary " src="../../assets/image/Comp_14.gif" alt="" width="50%"  /></div>',
       text: 'Espere un momento.',
       showConfirmButton: false,
       allowOutsideClick: false,
@@ -59,23 +59,29 @@ export const NavBar = () => {
 
   return (
     <>
-      <header>
-        <nav className="navbar navbar-dark bg-primary fixed-top">
-          <div className="container-fluid">
-          <a className="navbar-brand" onClick={home} >Gafa repuesto </a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarCollapse">
-              <ul className="navbar-nav me-auto mb-2 mb-md-0"></ul>
-              <form className="d-flex">
-                <button className="btn btn-outline-light" type="button" onClick={handleInfoUsuario}  style={{margin:"4px"}}><i className="bi bi-person-check" ></i> Mi Perfil </button>
-                <button className="btn btn-danger" type="button" onClick={salirApp}  style={{margin:"4px"}}><i className="bi bi-power"> Cerrar sesión</i></button>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </header>
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+    <a className="navbar-brand cursorPointer" onClick={home} >
+    <img src="../../assets/image/peugeot_ico.png" alt="" width="30" height="24"></img> Gafa repuesto 
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+    <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#" onClick={handleInfoUsuario} ><i className="bi bi-person-check" > Mi Perfil</i></a>
+
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#" onClick={salirApp} ><i className="bi bi-power"> Cerrar sesión</i></a>
+    </li>
+    </ul>
+    </div>
+    </div>
+  </nav>
+</header>
       <div className="mt-4"></div>
     </>
   )

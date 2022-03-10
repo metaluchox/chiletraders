@@ -56,8 +56,8 @@ export const AppRouter = () => {
     <div className="thumbnail">
       <a href="/w3images/lights.jpg">
       <img id="logo"
-              src="../../assets/image/chiletraderslogosinfondo.png"
-              width="100%"
+              src="../../assets/image/peugeot_ico.png"
+              width="25%"
               alt="Chile Traders"
               
             />

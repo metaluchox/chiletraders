@@ -13,10 +13,10 @@ export const NavBarPublic = () => {
   return (  
     <>  
     <header>
-      <nav className="navbar navbar-dark bg-primary fixed-top">
-        <div className="container text-center">
-          <a className="navbar-brand" onClick={home} >Gafa repuesto </a>
-        </div>
+      <nav className="navbar navbar-dark bg-dark fixed-top">
+          <a className="navbar-brand cursorPointer" onClick={home} >
+              <img src="../../assets/image/peugeot_ico.png" alt="" width="30" height="24"></img> Gafa repuesto 
+          </a>
       </nav>
     </header>
     <div className="mt-5"></div>
